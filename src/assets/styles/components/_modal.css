@@ -1,0 +1,14 @@
+.modal {
+    border: 1px solid #b8b8b8;
+    position: absolute;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 3px #b8b8b8;
+    transition: 1s;
+}
+
+.modal .modal-content .close {
+    font-size: 20pt;
+    padding-left: 5px;
+}
