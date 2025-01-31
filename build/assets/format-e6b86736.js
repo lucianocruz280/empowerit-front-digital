@@ -1,0 +1,1 @@
+const l=(t,o=-1,r,n=!0)=>{if(!t&&t!==0)return r??"-";let e=(o==-1?t:(typeof t=="number"?t:parseFloat(t)).toFixed(o).replace(n?/\.0+$/:"","")).toString();try{e=e.replace(new RegExp("\\B(?<!\\.\\d*)(?=(\\d{3})+(?!\\d))","g"),",")}catch{console.error("REGEX NO SUPPORTED"),e=Number(e).toLocaleString("en-US")}return e};export{l as f};

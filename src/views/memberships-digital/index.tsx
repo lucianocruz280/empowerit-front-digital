@@ -17,6 +17,7 @@ export default function MembershipsDigital() {
               binary_points={membership.binary_points}
               range_points={membership.range_points}
               cap={membership.cap}
+              duration={membership.duration}
             />
           ))}
         </div>

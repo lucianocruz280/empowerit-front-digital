@@ -1,0 +1,1 @@
+import{u as r,j as p}from"./index-dd631538.js";import{M as a}from"./Map-62d70e89.js";import"./index-540cc576.js";const u=()=>{const s=r(t=>t.auth.user),e=s==null?void 0:s.uid;return p.jsx(a,{url:`https://empowerit-api.vercel.app/users/mx-users-sanguine/${e}`})},m=u;export{m as default};

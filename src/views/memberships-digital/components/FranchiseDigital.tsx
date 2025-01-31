@@ -16,6 +16,7 @@ export default function FranchiseDigital({
   cap,
   binary_points,
   range_points,
+  duration
 }: MembershipsDigitalProps) {
   const [loading, setLoading] = useState(false)
   const user = useAppSelector((state) => state.auth.user)
@@ -41,7 +42,8 @@ export default function FranchiseDigital({
     }
   }
   return (
-    <div className="flex flex-col rounded-md w-full p-4 space-y-4 transition-all duration-75 ring-gray-200 border">
+    <div className="flex flex-col relative rounded-md w-full p-4 space-y-4 transition-all duration-75 ring-gray-200 border">
+      <div className='absolute border rounded-full px-3 py-2 right-2 top-2'><span>{duration} {duration == 1 ? 'Mes' : 'Meses'}</span></div>
       <div className="flex justify-center">
         <img src={image} alt={image} className="max-h-[250px] max-w-[300px]" />
       </div>

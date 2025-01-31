@@ -42,7 +42,7 @@ export type Memberships =
   | 'FP200'
   | 'FP300'
   | 'FP500'
-  | 'FD200'
+  | 'FD150'
   | 'FD300'
   | 'FD500'
 

@@ -1,0 +1,1 @@
+var a=(r=>(r.LEADERSHIP="academy-leadership",r.STANDARD="academy",r))(a||{}),s=(r=>(r.LEADERSHIP="courses-leadership",r.STANDARD="courses",r))(s||{}),e=(r=>(r.LIVE="lives",r.LESSON="lessons",r))(e||{});export{a as A,s as C,e as a};
