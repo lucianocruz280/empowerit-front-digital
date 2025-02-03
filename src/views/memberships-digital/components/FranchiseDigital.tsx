@@ -54,8 +54,7 @@ export default function FranchiseDigital({
         <span className="font-bold">{binary_points} puntos</span>
         <span className="text-left truncate">Puntos de Rango: </span>
         <span className="font-bold">{range_points} puntos</span>
-        <span className="text-left">CAP: </span>
-        <span className="font-bold">{cap} dolares</span>
+      
       </div>
       <ShowQR
         type={name}
