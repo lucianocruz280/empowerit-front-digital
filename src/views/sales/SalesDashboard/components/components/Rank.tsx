@@ -308,7 +308,7 @@ const Rank = () => {
           </div>
           <div className="grid grid-cols-[max-content_1fr] gap-x-4 pl-2 text-xl">
             <span className="font-bold text-right">
-              <span className="text-3xl">{rank?.binary_percent * 100}</span> %
+              <span className="text-3xl">{rank?.binary_percent ? (rank?.binary_percent * 100) : 0}</span> %
             </span>
           </div>
         </Card>
@@ -340,7 +340,7 @@ const Rank = () => {
             </span>
           </div>
         </Card> */}
-        <Card>
+        {/* <Card>
           <div className="flex space-x-2 items-center">
             <div className="rounded-full h-[40px] w-[40px] p-2 flex items-center justify-center bg-gray-300">
               <RiPresentationFill size={30} className="text-purple-500" />
@@ -359,7 +359,7 @@ const Rank = () => {
               USD
             </span>
           </div>
-        </Card>
+        </Card> */}
       </div>
 
       <Dialog

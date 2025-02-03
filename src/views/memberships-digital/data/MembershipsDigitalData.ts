@@ -14,7 +14,7 @@ export const MEMBERSHIPS_DIGITAL: MembershipsDigitalProps[] = [
     name: 'FD150',
     binary_points: 75,
     range_points: 150,
-    image: '/img/memberships/FD200.png',
+    image: '/img/memberships/fd1.png',
     cap: 500,
     duration: 1
   },
