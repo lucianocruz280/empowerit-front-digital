@@ -160,6 +160,12 @@ export const protectedRoutes = [
     component: lazy(() => import('@/views/mr-money-power-admin')),
     authority: ['ADMIN', 'MR-MONEY-POWER'],
   },
+  {
+    key: 'user-withdraws',
+    path: '/user/withdraws',
+    component: lazy(() => import('@/views/withdraws')),
+    authority: ['USER'],
+  },
   // Top Shop
   {
     key: 'shop',
@@ -454,7 +460,7 @@ export const payRoute = [
   {
     key: 'pay',
     path: '/home',
-    component: lazy(() => import('@/views/memberships-automatic')),
+    component: lazy(() => import('@/views/memberships-digital')),
     authority: [],
   },
   {

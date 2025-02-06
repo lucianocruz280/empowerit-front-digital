@@ -54,7 +54,8 @@ export type UserState = {
   has_bought_mr_sport?: boolean
   has_bought_mr_money_power?: boolean
   has_automatic_franchises?: boolean
-
+  balance: number
+  savings: number
   membership: string | null
   membership_status: 'paid' | 'expired' | null
   membership_expires_at: string | null
@@ -153,6 +154,8 @@ const initialState: UserState = {
   city: '',
   whatsapp: 0,
   telegram: 0,
+  balance: 0,
+  savings: 0,
   last_name: '',
   email: '',
   authority: [],
@@ -214,6 +217,8 @@ const userSlice = createSlice({
         state.email = payload.email
         state.name = payload.name
         state.birthdate = payload.birthdate
+        state.balance = payload.balance
+        state.savings = payload.savings
         state.country = payload.country
         state.state = payload.state
         state.city = payload.city

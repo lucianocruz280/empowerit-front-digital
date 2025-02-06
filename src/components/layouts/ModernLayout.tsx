@@ -5,7 +5,7 @@ import MobileNav from '@/components/template/MobileNav'
 import SideNav from '@/components/template/SideNav'
 import View from '@/views'
 import { useAppSelector } from '@/store'
-import { OPTIONS } from '@/utils/packs'
+import { OPTIONS, OPTIONS2 } from '@/utils/packs'
 import { useState } from 'react'
 import { Dialog } from '../ui'
 import RechargeCreditsCard from './RechargeCreditsCard'
@@ -31,7 +31,7 @@ const HeaderActionsEnd = () => {
     '1000-pack',
     '2000-pack',
     '3000-pack',
-    'FD200',
+    'FD150',
     'FD300',
     'FD500',
     'FP200',
@@ -53,13 +53,13 @@ const HeaderActionsEnd = () => {
           {!is_new_pack ? (
             <>
               <img
-                src={OPTIONS.find((r) => r.value == user.membership)?.image}
+                src={OPTIONS2.find((r) => r.value == user.membership)?.image}
                 className="h-[50px] w-auto"
                 width={80}
                 height={80}
               />
               <span>
-                {OPTIONS.find((r) => r.value == user.membership)?.label}
+                {OPTIONS2.find((r) => r.value == user.membership)?.label}
               </span>
             </>
           ) : (
