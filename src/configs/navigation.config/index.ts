@@ -158,16 +158,16 @@ const navigationConfig = (user: UserState): NavigationTree[] => [
     authority: ['USER'],
     subMenu: [],
   },*/
-  {
-    key: 'rank',
-    path: `/rank`,
-    title: 'Rango',
-    translateKey: 'nav.order-list',
-    icon: 'rank',
-    type: NAV_ITEM_TYPE_ITEM,
-    authority: ['USER'],
-    subMenu: [],
-  },
+  // {
+  //   key: 'rank',
+  //   path: `/rank`,
+  //   title: 'Rango',
+  //   translateKey: 'nav.order-list',
+  //   icon: 'rank',
+  //   type: NAV_ITEM_TYPE_ITEM,
+  //   authority: ['USER'],
+  //   subMenu: [],
+  // },
   {
     key: 'user-payroll.history',
     path: `/payroll/history`,

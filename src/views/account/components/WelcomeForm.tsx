@@ -240,7 +240,7 @@ const WelcomeForm = ({ data, setOpenWelcomeModal }: any) => {
           <Form>
             <FormDescription
               title="¡Felicidades por formar parte de la compañía que esta revolucionando la forma de hacer negocios!"
-              desc="Completa los siguientes datos para poder disfrutar al máximo de Empowerit TOP"
+              desc="Completa los siguientes datos para poder disfrutar al máximo de NOW"
             />
             <FormContainer>
               <FormRow name="basic" label="Datos básicos" {...validatorProps}>
@@ -269,7 +269,7 @@ const WelcomeForm = ({ data, setOpenWelcomeModal }: any) => {
                 {...validatorProps}
               >
                 <div>
-                  <span className="font-bold">Wallet de Litecoin</span>{' '}
+                  <span className="font-bold">Wallet de USDT (Tether)</span>{' '}
                   <span className="text-red-500 text-xs">(Obligatorio)</span>
                 </div>
                 <Field
@@ -281,7 +281,7 @@ const WelcomeForm = ({ data, setOpenWelcomeModal }: any) => {
                   prefix={<SiLitecoin className="text-xl" />}
                 />
 
-                <div className="mt-2 ltr:mr-2 rtl:ml-2">
+                {/* <div className="mt-2 ltr:mr-2 rtl:ml-2">
                   <span className="font-bold">RFC</span>
                 </div>
                 <Field
@@ -303,7 +303,7 @@ const WelcomeForm = ({ data, setOpenWelcomeModal }: any) => {
                   placeholder="CABLE Cuenta de Banco"
                   component={Input}
                   prefix={<BsBank className="text-xl" />}
-                />
+                /> */}
               </FormRow>
               <FormRow name="location" label="Locación" {...validatorProps}>
                 <Field
@@ -353,7 +353,7 @@ const WelcomeForm = ({ data, setOpenWelcomeModal }: any) => {
                   <span className="text-red-500">Ciudad es obligatorio</span>
                 )}
 
-                <Field
+                {/* <Field
                   type="text"
                   autoComplete="off"
                   name="colony"
@@ -430,7 +430,7 @@ const WelcomeForm = ({ data, setOpenWelcomeModal }: any) => {
                     placeholder="Entre calles"
                     component={Input}
                   />
-                </div>
+                </div> */}
               </FormRow>
               <FormRow name="contact" label="Contacto" {...validatorProps}>
                 <Field

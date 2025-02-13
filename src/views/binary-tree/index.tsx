@@ -162,7 +162,7 @@ const NodeAvatar = forwardRef(
                   {name}
                 </span>
                 <span className="text-center">
-                  Socio <span className="whitespace-nowrap">EMPOWERIT TOP</span>
+                  Socio <span className="whitespace-nowrap">NOW</span>
                 </span>
               </span>
             </div>

@@ -350,8 +350,8 @@ const Profile = ({ data }: any) => {
                   prefix={<HiOutlineCalendar className="text-xl" />}
                 />
 
-                <br />
-                <label>Código de presentador</label>
+                {/* <br /> */}
+                {/* <label>Código de presentador</label>
                 <Field
                   type="text"
                   autoComplete="off"
@@ -361,10 +361,10 @@ const Profile = ({ data }: any) => {
                   prefix={<HiOutlineUserCircle className="text-xl" />}
                   readOnly={!isValidCode}
                   disabled={!isValidCode}
-                />
+                /> */}
               </FormRow>
 
-              <FormRow
+              {/* <FormRow
                 name="payroll"
                 label="Métodos de pago"
                 {...validatorProps}
@@ -391,7 +391,7 @@ const Profile = ({ data }: any) => {
                   disabled={!isValidCode}
                   prefix={<BsBank className="text-xl" />}
                 />
-              </FormRow>
+              </FormRow> */}
 
               <FormRow name="location" label="Locación" {...validatorProps}>
                 <Field
@@ -434,7 +434,7 @@ const Profile = ({ data }: any) => {
                   disabled={!isValidCode}
                 />
 
-                <br />
+                {/* <br />
                 <label>Código postal</label>
                 <Field
                   className="mt-2 ltr:mr-2 rtl:ml-2"
@@ -500,7 +500,7 @@ const Profile = ({ data }: any) => {
                   component={Input}
                   readOnly={!isValidCode}
                   disabled={!isValidCode}
-                />
+                /> */}
               </FormRow>
               <FormRow name="contact" label="Contacto" {...validatorProps}>
                 <Field

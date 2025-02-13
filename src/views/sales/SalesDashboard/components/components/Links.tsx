@@ -28,7 +28,7 @@ const Links = () => {
         <div className=" border border-slate-300 p-4 mt-2  rounded-[8px] space-y-2">
           {
             <span>
-              Links autogenerados por <strong>EMPOWERIT TOP</strong>
+              Links autogenerados por <strong>NOW</strong>
             </span>
           }
           {

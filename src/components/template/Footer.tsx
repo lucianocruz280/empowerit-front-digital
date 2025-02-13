@@ -18,11 +18,11 @@ const FooterContent = () => {
         reserved.
       </span>
       <div className="">
-        <a className="text-gray" href="/terms-conditions.pdf">
+        <a className="text-gray" href="#terms-conditions.pdf">
           Term & Conditions
         </a>
         <span className="mx-2 text-muted"> | </span>
-        <a className="text-gray" href="/privacy-policy.pdf">
+        <a className="text-gray" href="#privacy-policy.pdf">
           Privacy & Policy
         </a>
       </div>

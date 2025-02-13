@@ -14,7 +14,7 @@ const SocialMediaRedirection = () => {
           rel="noreferrer"
         >
           <BsWhatsapp className="text-xl" />
-          <strong>EMPOWERIT TOP Server</strong>
+          <strong>NOW Server</strong>
         </a>
       </div>
     </>
