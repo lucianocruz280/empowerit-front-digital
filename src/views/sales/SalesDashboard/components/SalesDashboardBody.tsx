@@ -135,7 +135,7 @@ const SalesDashboardBody = () => {
         role="presentation"
       >
         <img
-          src="/img/dashboard/banner-1-empowerit-top.jpg"
+          src="/img/banner/banner-horizontal-web-now.jpg"
           className="w-full"
         />
       </div>
@@ -151,7 +151,7 @@ const SalesDashboardBody = () => {
         role="presentation"
       >
         <img
-          src="/img/dashboard/banner-horizontal-emp-top-2.jpg"
+          src="/img/banner/banner-horizontal-web-now-servicios.jpg"
           className="w-full"
         />
       </div>
