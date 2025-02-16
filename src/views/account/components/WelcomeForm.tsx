@@ -269,7 +269,7 @@ const WelcomeForm = ({ data, setOpenWelcomeModal }: any) => {
                 {...validatorProps}
               >
                 <div>
-                  <span className="font-bold">Wallet de USDT (Tether)</span>{' '}
+                  <span className="font-bold">Wallet de USDT (Tether - TRON)</span>{' '}
                   <span className="text-red-500 text-xs">(Obligatorio)</span>
                 </div>
                 <Field

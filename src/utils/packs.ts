@@ -103,17 +103,17 @@ export const OPTIONS2 = [
     image: '/img/Franchises/3000-pack.png',
   },
   {
-    label: 'FD150',
+    label: '150 BASIC',
     value: 'FD150',
     image: '/img/memberships/fd1.png',
   },
   {
-    label: 'FD300',
+    label: '300 PRO',
     value: 'FD300',
     image: '/img/Franchises/FD300.png',
   },
   {
-    label: 'FD500',
+    label: '500 SUPREME',
     value: 'FD500',
     image: '/img/Franchises/FD500.png',
   },

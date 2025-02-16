@@ -140,12 +140,7 @@ const SalesDashboardBody = () => {
         />
       </div>
       <Rank />
-      {user &&
-      user.membership_cap_limit &&
-      typeof user.membership_cap_current === 'number' &&
-      typeof user.membership_cap_limit === 'number' ? (
-        <CapSlider />
-      ) : null}
+      
       <div
         className="card hover:shadow-lg transition duration-150 ease-in-out hover:dark:border-gray-400  p-4  card-border bg-slate-100 rounded-[10px]"
         role="presentation"

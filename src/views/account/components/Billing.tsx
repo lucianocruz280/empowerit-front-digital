@@ -269,7 +269,7 @@ const Billing = () => {
                 </FormRow>
                 <FormRow
                   name="wallet_litecoin"
-                  label="Dirección Wallet Litecoin"
+                  label="Dirección Wallet Usdt (Tether - TRON)"
                   {...validatorProps}
                 >
                   <Field

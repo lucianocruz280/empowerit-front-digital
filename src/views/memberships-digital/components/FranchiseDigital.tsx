@@ -13,6 +13,7 @@ import { MembershipsDigitalProps } from '../data/MembershipsDigitalData'
 export default function FranchiseDigital({
   image,
   name,
+  label,
   cap,
   binary_points,
   range_points,
@@ -48,8 +49,8 @@ export default function FranchiseDigital({
         <img src={image} alt={image} className="max-h-[250px] max-w-[300px]" />
       </div>
       <div className="grid grid-cols-[min-content_1fr] w-max gap-x-4 ">
-        <span className="text-left">Franquicia: </span>
-        <span className="font-bold">{name}</span>
+        <span className="text-left">Membresía: </span>
+        <span className="font-bold">{label}</span>
         <span className="text-left truncate">Puntos de Binario: </span>
         <span className="font-bold">{binary_points} puntos</span>
         <span className="text-left truncate">Puntos de Rango: </span>

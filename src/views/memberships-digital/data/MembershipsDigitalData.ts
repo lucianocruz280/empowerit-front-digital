@@ -1,4 +1,5 @@
 export interface MembershipsDigitalProps {
+  label: string
   name: MembershipsDigitalNames
   binary_points: number
   range_points: number
@@ -11,6 +12,7 @@ export type MembershipsDigitalNames = 'FD150' | 'FD300' | 'FD500'
 
 export const MEMBERSHIPS_DIGITAL: MembershipsDigitalProps[] = [
   {
+    label: '150 BASIC',
     name: 'FD150',
     binary_points: 75,
     range_points: 150,
@@ -19,6 +21,7 @@ export const MEMBERSHIPS_DIGITAL: MembershipsDigitalProps[] = [
     duration: 1
   },
   {
+    label: '300 PRO',
     name: 'FD300',
     binary_points: 150,
     range_points: 300,
@@ -27,6 +30,7 @@ export const MEMBERSHIPS_DIGITAL: MembershipsDigitalProps[] = [
     duration: 3
   },
   {
+    label: '500 SUPREME',
     name: 'FD500',
     binary_points: 250,
     range_points: 500,
