@@ -107,7 +107,7 @@ export const createPaymentLink = async (
             type,
             buyer_email,
             currency1: 'USDT',
-            currency2: 'LTCT',
+            currency2: 'USDT.TRC20',
             period,
             cmd: 'create_transaction'
           }),
