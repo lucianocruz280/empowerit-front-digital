@@ -10,7 +10,7 @@ interface LogoProps extends CommonProps {
   fullWidth?: boolean
 }
 
-const LOGO_SRC_PATH = '/img/logo3/'
+const LOGO_SRC_PATH = '/img/logo4/'
 
 const Logo = (props: LogoProps) => {
   const {

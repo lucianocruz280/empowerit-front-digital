@@ -12,7 +12,7 @@ const Side = ({ children, content, ...rest }: SideProps) => {
       <div
         className="bg-no-repeat bg-cover bg-center py-6 px-16 flex-col items-center justify-center hidden lg:flex relative"
         style={{
-          backgroundImage: `url('/img/welcome.png')`,
+          backgroundImage: `url('/img/sign-in-banner.png')`,
         }}
       >
       </div>
