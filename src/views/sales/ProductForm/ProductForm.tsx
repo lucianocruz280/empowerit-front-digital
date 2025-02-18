@@ -85,7 +85,7 @@ const DeleteProductButton = ({ onDelete }: { onDelete: OnDelete }) => {
     return (
         <>
             <Button
-                className="text-red-600"
+                className="text-blue-600"
                 variant="plain"
                 size="sm"
                 icon={<HiOutlineTrash />}
@@ -98,7 +98,7 @@ const DeleteProductButton = ({ onDelete }: { onDelete: OnDelete }) => {
                 isOpen={dialogOpen}
                 type="danger"
                 title="Delete product"
-                confirmButtonColor="red-600"
+                confirmButtonColor="blue-600"
                 onClose={onConfirmDialogClose}
                 onRequestClose={onConfirmDialogClose}
                 onCancel={onConfirmDialogClose}

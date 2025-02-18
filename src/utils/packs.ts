@@ -72,36 +72,36 @@ export const OPTIONS2 = [
   //   value: '3000-pack',
   //   image: '/img/Franchises/3000-pack.png',
   // },
-  {
-    label: 'FA500',
-    value: 'FA500',
-    image: '/img/Franchises/1000-pack.png',
-  },
-  {
-    label: 'FA1000',
-    value: 'FA1000',
-    image: '/img/Franchises/2000-pack.png',
-  },
-  {
-    label: 'FA2000',
-    value: 'FA2000',
-    image: '/img/Franchises/3000-pack.png',
-  },
-  {
-    label: 'FA5000',
-    value: 'FA5000',
-    image: '/img/Franchises/1000-pack.png',
-  },
-  {
-    label: 'FA10000',
-    value: 'FA10000',
-    image: '/img/Franchises/2000-pack.png',
-  },
-  {
-    label: 'FA20000',
-    value: 'FA20000',
-    image: '/img/Franchises/3000-pack.png',
-  },
+  // {
+  //   label: 'FA500',
+  //   value: 'FA500',
+  //   image: '/img/Franchises/1000-pack.png',
+  // },
+  // {
+  //   label: 'FA1000',
+  //   value: 'FA1000',
+  //   image: '/img/Franchises/2000-pack.png',
+  // },
+  // {
+  //   label: 'FA2000',
+  //   value: 'FA2000',
+  //   image: '/img/Franchises/3000-pack.png',
+  // },
+  // {
+  //   label: 'FA5000',
+  //   value: 'FA5000',
+  //   image: '/img/Franchises/1000-pack.png',
+  // },
+  // {
+  //   label: 'FA10000',
+  //   value: 'FA10000',
+  //   image: '/img/Franchises/2000-pack.png',
+  // },
+  // {
+  //   label: 'FA20000',
+  //   value: 'FA20000',
+  //   image: '/img/Franchises/3000-pack.png',
+  // },
   {
     label: '150 BASIC',
     value: 'FD150',
@@ -117,21 +117,21 @@ export const OPTIONS2 = [
     value: 'FD500',
     image: '/img/Franchises/FD500.png',
   },
-  {
-    label: 'FP200',
-    value: 'FP200',
-    image: '/img/Franchises/FP200.png',
-  },
-  {
-    label: 'FP300',
-    value: 'FP300',
-    image: '/img/Franchises/FP300.png',
-  },
-  {
-    label: 'FP500',
-    value: 'FP500',
-    image: '/img/Franchises/FP500.png',
-  },
+  // {
+  //   label: 'FP200',
+  //   value: 'FP200',
+  //   image: '/img/Franchises/FP200.png',
+  // },
+  // {
+  //   label: 'FP300',
+  //   value: 'FP300',
+  //   image: '/img/Franchises/FP300.png',
+  // },
+  // {
+  //   label: 'FP500',
+  //   value: 'FP500',
+  //   image: '/img/Franchises/FP500.png',
+  // },
 ]
 
 export const OPTIONS_PARTICIPATIONS = [

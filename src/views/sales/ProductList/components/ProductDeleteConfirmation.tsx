@@ -51,7 +51,7 @@ const ProductDeleteConfirmation = () => {
             isOpen={dialogOpen}
             type="danger"
             title="Delete product"
-            confirmButtonColor="red-600"
+            confirmButtonColor="blue-600"
             onClose={onDialogClose}
             onRequestClose={onDialogClose}
             onCancel={onDialogClose}

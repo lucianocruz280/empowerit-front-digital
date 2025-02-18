@@ -47,7 +47,7 @@ const Rank = () => {
           isOpen={dialogOpen}
           type="info"
           title="Salta al siguiente rango"
-          confirmButtonColor="red-600"
+          confirmButtonColor="blue-600"
           onClose={onConfirmDialogClose}
           hideButtons
         >

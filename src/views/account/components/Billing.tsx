@@ -29,8 +29,8 @@ import WalletsHistoryTable from './WalletsHistoryTable'
 const Billing = () => {
   const user = useAppSelector((state) => state.auth.user)
   const [data, setData] = useState({
-    wallet_bitcoin: user.wallet_bitcoin,
-    wallet_litecoin: user.wallet_litecoin,
+ 
+    wallet_litecoin: user.wallet_usdt,
   })
   const [isAuthenticating, setIsAuthenticating] = useState(false)
   const [isUnlocking, setIsUnlocking] = useState(false)
@@ -43,8 +43,7 @@ const Billing = () => {
 
   useEffect(() => {
     setData({
-      wallet_bitcoin: user.wallet_bitcoin,
-      wallet_litecoin: user.wallet_litecoin,
+      wallet_litecoin: user.wallet_usdt,
     })
   }, [user])
 
@@ -193,7 +192,7 @@ const Billing = () => {
   const registerWallet = async (wallet: string, type: string) => {
     if (!user || !user.uid) return
     await addDoc(collection(db, "users", user.uid, "wallets-history"), {
-      prev_wallet: user.wallet_litecoin,
+      prev_wallet: user.wallet_usdt,
       new_wallet: wallet,
       type,
       created_at: new Date(),
@@ -214,9 +213,9 @@ const Billing = () => {
           setSubmitting(true)
           try {
             const sendData = {
-              wallet_bitcoin: values.wallet_bitcoin,
-              wallet_ripple: values.wallet_ripple,
-              wallet_litecoin: values.wallet_litecoin,
+             
+            
+              wallet_usdt: values.wallet_litecoin,
             }
             await updateUser(user.uid!, sendData)
             dispatch(setUser({ ...user, ...sendData }))
@@ -240,42 +239,16 @@ const Billing = () => {
             <Form>
               <FormContainer>
                 <FormDescription title="Wallets" desc="" />
+                
                 <FormRow
-                  name="wallet_bitcoin"
-                  label="Dirección Wallet Bitcoin"
-                  {...validatorProps}
-                >
-                  <Field
-                    type="text"
-                    autoComplete="off"
-                    name="wallet_bitcoin"
-                    placeholder="Wallet Address"
-                    component={Input}
-                    readOnly={!isValidCode || isValidWallet}
-                    disabled={!isValidCode || isValidWallet}
-                  />
-                  <Button
-                    className="mt-2 ltr:mr-2 rtl:ml-2"
-                    type="button"
-                    variant="default"
-                    color="primary"
-                    onClick={() =>
-                      onVerifyWallet(values.wallet_bitcoin, 'bitcoin')
-                    }
-                    hidden={!isValidCode}
-                  >
-                    Verificar
-                  </Button>
-                </FormRow>
-                <FormRow
-                  name="wallet_litecoin"
+                  name="wallet_usdt"
                   label="Dirección Wallet Usdt (Tether - TRON)"
                   {...validatorProps}
                 >
                   <Field
                     type="text"
                     autoComplete="off"
-                    name="wallet_litecoin"
+                    name="wallet_usdt"
                     placeholder="Wallet Address"
                     component={Input}
                     readOnly={!isValidCode || isValidWalletLitecoin}
@@ -299,7 +272,7 @@ const Billing = () => {
                     variant="default"
                     color="primary"
                     onClick={() => deleteWallet()}
-                    disabled={user.wallet_litecoin == '' ? true : false}
+                    disabled={user.wallet_usdt == '' ? true : false}
                   >
                     Quitar wallet
                   </Button>

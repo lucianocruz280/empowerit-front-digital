@@ -38,7 +38,7 @@ export type UserState = {
   left?: string
   right?: string
   wallet_bitcoin?: string
-  wallet_litecoin?: string
+  wallet_usdt?: string
   bank_account?: string
   rfc?: string
   left_points: number
@@ -301,7 +301,7 @@ const userSlice = createSlice({
         state.wallet_bitcoin = payload.wallet_bitcoin
         state.bank_account = payload.bank_account
         state.rfc = payload.rfc
-        state.wallet_litecoin = payload.wallet_litecoin ?? ''
+        state.wallet_usdt = payload.wallet_usdt ?? ''
         state.rank = payload.rank
         state.position = payload.position ?? 'right'
         state.is_new = payload.is_new ?? false

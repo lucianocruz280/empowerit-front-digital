@@ -28,7 +28,7 @@ export type ThemeConfig = {
  * we recommend to use the configuration that generated from demo.
  */
 export const themeConfig: ThemeConfig = {
-    themeColor: 'red',
+    themeColor: 'blue',
     direction: THEME_ENUM.DIR_LTR,
     mode: THEME_ENUM.MODE_LIGHT,
     primaryColorLevel: 600,

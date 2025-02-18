@@ -100,7 +100,7 @@ const ImageList = (props: ImageListProps) => {
         isOpen={deleteConfirmationOpen}
         type="danger"
         title="Remove image"
-        confirmButtonColor="red-600"
+        confirmButtonColor="blue-600"
         onClose={onDeleteConfirmationClose}
         onRequestClose={onDeleteConfirmationClose}
         onCancel={onDeleteConfirmationClose}
