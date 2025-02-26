@@ -318,7 +318,7 @@ const Rank = () => {
             <div className="rounded-full h-[40px] w-[40px] p-2 flex items-center justify-center bg-gray-300">
               <FaPeopleLine size={30} className="text-green-700" />
             </div>
-            <span className="text-lg font-medium">Bono Mentor</span>
+            <span className="text-lg font-medium">Bono Investment</span>
           </div>
           <div className="grid grid-cols-[max-content_1fr] gap-x-4 pl-2 text-xl">
             <span className="font-bold text-right">
