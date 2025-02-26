@@ -38,7 +38,7 @@ const HeaderActionsEnd = () => {
     'FP300',
     'FP500',
   ].includes(user.membership ?? '')
-
+  const membership = OPTIONS2.find((item) => item.value == user.membership)
   return (
     <>
       {user?.membership && (
@@ -70,7 +70,7 @@ const HeaderActionsEnd = () => {
                 width={80}
                 height={80}
               />
-              <span>{user.membership}</span>
+              <span>{membership?.label}</span>
             </>
           )}
           <Dialog isOpen={open} onClose={() => setOpen(false)}>
