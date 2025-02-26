@@ -31,7 +31,7 @@ import {
 import useCountries, { CountriesHook } from '@/hooks/useCountries'
 import useStates, { StatesHook } from '@/hooks/useStates'
 import useCities, { CitiesHook } from '@/hooks/useCities'
-import { SiLitecoin } from 'react-icons/si'
+import { SiLitecoin, SiTether } from 'react-icons/si'
 import { FaRegRegistered } from 'react-icons/fa6'
 
 const WelcomeForm = ({ data, setOpenWelcomeModal }: any) => {
@@ -278,7 +278,7 @@ const WelcomeForm = ({ data, setOpenWelcomeModal }: any) => {
                   name="wallet_litecoin"
                   placeholder="Dirección"
                   component={Input}
-                  prefix={<SiLitecoin className="text-xl" />}
+                  prefix={<SiTether className="text-xl" />}
                 />
 
                 {/* <div className="mt-2 ltr:mr-2 rtl:ml-2">

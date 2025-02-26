@@ -237,12 +237,12 @@ const FormPay = ({
           <br />
           despues de confirmar el pago.
         </p>
-        <button
+        {/* <button
           className="rounded-md px-4 py-2 underline"
           onClick={() => deletePaymentLink()}
         >
           {'<-'} Cambiar metodo de pago
-        </button>
+        </button> */}
       </div>
       {isExpired && !amountChanged ? (
         <div className="flex justify-end space-x-1">
