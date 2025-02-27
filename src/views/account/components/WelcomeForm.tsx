@@ -75,7 +75,7 @@ const WelcomeForm = ({ data, setOpenWelcomeModal }: any) => {
     name: Yup.string().required('User Name Required'),
     birthdate: Yup.date().required('Date Required'),
     //email: Yup.string().email('Invalid email').required('Email Required'),
-    wallet_litecoin: Yup.string().optional(),
+    wallet_usdt: Yup.string().optional(),
     // rfc: Yup.string().optional(),
     bank_account: Yup.string().optional(),
     country: Yup.object().shape({
@@ -148,10 +148,7 @@ const WelcomeForm = ({ data, setOpenWelcomeModal }: any) => {
           const infLocation = {
             country: vCountry,
             state: vState,
-            city: {
-              label: values.city,
-              value: values.city,
-            },
+            city: values.city,
     
           
           }
@@ -167,7 +164,7 @@ const WelcomeForm = ({ data, setOpenWelcomeModal }: any) => {
           }
           const infPayroll = {
   
-            wallet_litecoin: values.wallet_litecoin,
+            wallet_usdt: values.wallet_usdt,
             // bank_account: values.bank_account,
           }
           const infBeneficiario = {
@@ -271,7 +268,7 @@ const WelcomeForm = ({ data, setOpenWelcomeModal }: any) => {
                 <Field
                   type="text"
                   autoComplete="off"
-                  name="wallet_litecoin"
+                  name="wallet_usdt"
                   placeholder="Dirección"
                   component={Input}
                   prefix={<SiTether className="text-xl" />}
@@ -344,6 +341,7 @@ const WelcomeForm = ({ data, setOpenWelcomeModal }: any) => {
                   name="city"
                   placeholder="Ciudad"
                   component={Input}
+           
                 />
                 {errors?.city && (
                   <span className="text-red-500">Ciudad es obligatorio</span>
