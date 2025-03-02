@@ -8,6 +8,7 @@ const _SideNavToggle = ({ className }: CommonProps) => {
     const sideNavCollapse = useAppSelector(
         (state) => state.theme.layout.sideNavCollapse
     )
+    
     const dispatch = useAppDispatch()
 
     const { larger } = useResponsive()

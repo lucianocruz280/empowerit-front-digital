@@ -38,6 +38,7 @@ const SideNav = () => {
   const sideNavCollapse = useAppSelector(
     (state) => state.theme.layout.sideNavCollapse
   )
+
   const userAuthority = useAppSelector((state) => state.auth.user.authority)
   const userLoged = useAppSelector((state) => state.auth.user)
 

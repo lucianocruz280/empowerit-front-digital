@@ -134,8 +134,8 @@ const NodeAvatar = forwardRef(
         onClick={onClick}
       >
         <img
-          src="/img/logo3/logo-dark-streamline.png"
-          className="absolute left-1/2 top-1/2 -translate-y-1/2 w-full -translate-x-1/2 opacity-5"
+          src="/img/logo4/logo-dark-streamline.png"
+          className="absolute left-1/2 top-1/2 -translate-y-1/2 w-1/2 -translate-x-1/2 opacity-25"
         />
         <div className="relative flex flex-col items-center space-y-4">
           <div className="relative">

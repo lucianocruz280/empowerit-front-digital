@@ -260,7 +260,7 @@ const Billing = () => {
                     variant="default"
                     color="primary"
                     onClick={() =>
-                      onVerifyWallet(values.wallet_litecoin, 'litecoin')
+                      onVerifyWallet(values.wallet_usdt, 'litecoin')
                     }
                     hidden={!isValidCode}
                   >
