@@ -101,6 +101,7 @@ const CollapsedItem = ({
     return (
         <AuthorityCheck userAuthority={userAuthority} authority={nav.authority}>
             <Dropdown
+                className='!z-[999]'
                 trigger="hover"
                 renderTitle={menuItem}
                 placement={

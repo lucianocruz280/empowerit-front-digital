@@ -22,6 +22,7 @@ const sideNavStyle = {
 const sideNavCollapseStyle = {
   width: SIDE_NAV_COLLAPSED_WIDTH,
   minWidth: SIDE_NAV_COLLAPSED_WIDTH,
+  zIndex: 999
 }
 
 const SideNav = () => {
@@ -69,7 +70,7 @@ const SideNav = () => {
           style={sideNavCollapse ? sideNavCollapseStyle : sideNavStyle}
           className={classNames(
             'side-nav',
-            'overflow-auto',
+            '',
             sideNavColor(),
             !sideNavCollapse && 'side-nav-expand'
           )}
