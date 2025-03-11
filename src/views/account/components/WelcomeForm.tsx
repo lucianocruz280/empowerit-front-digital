@@ -468,7 +468,7 @@ const WelcomeForm = ({ data, setOpenWelcomeModal }: any) => {
                 />
               </FormRow>*/}
 
-              <FormRow
+              {/* <FormRow
                 name="beneficiarios"
                 label="Negocio Heredable"
                 {...validatorProps}
@@ -527,7 +527,7 @@ const WelcomeForm = ({ data, setOpenWelcomeModal }: any) => {
                   component={Input}
                   prefix={<HiUsers className="text-xl" />}
                 />
-              </FormRow>
+              </FormRow> */}
               <div className="mt-4 ltr:text-right">
                 <Button variant="solid" loading={isSubmitting} type="submit">
                   Actualizar

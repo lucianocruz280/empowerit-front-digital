@@ -322,7 +322,7 @@ const Rank = () => {
           </div>
           <div className="grid grid-cols-[max-content_1fr] gap-x-4 pl-2 text-xl">
             <span className="font-bold text-right">
-              <span className="text-3xl">{rank?.mentor_percent * 100}</span> %
+              <span className="text-3xl">${user?.bond_investment || 0}</span>
             </span>
           </div>
         </Card>

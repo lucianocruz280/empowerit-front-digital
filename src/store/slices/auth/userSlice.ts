@@ -69,7 +69,7 @@ export type UserState = {
   bond_presenter: number
   bond_quick_start: number
   presenter_code: string
-
+  bond_investment: number
   payment_link?: {
     //CoinPayments
     /* address: string
@@ -183,6 +183,7 @@ const initialState: UserState = {
   customToken: '',
   bond_presenter: 0,
   bond_quick_start: 0,
+  bond_investment: 0,
   presenter_code: '',
   street: '',
   num_ext: '',
@@ -318,6 +319,7 @@ const userSlice = createSlice({
 
         state.bond_quick_start = payload.bond_quick_start
         state.bond_presenter = payload.bond_presenter
+        state.bond_investment = payload.bond_investment
         state.algorithmId = payload.algorithmId
 
         state.membership_expires_at = payload.membership_expires_at
