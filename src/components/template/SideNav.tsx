@@ -11,7 +11,7 @@ import Logo from '@/components/template/Logo'
 import navigationConfig from '@/configs/navigation.config'
 import VerticalMenuContent from '@/components/template/VerticalMenuContent'
 import useResponsive from '@/utils/hooks/useResponsive'
-import { useAppSelector } from '@/store'
+import { setSideNavCollapse, useAppDispatch, useAppSelector } from '@/store'
 import useAuth from '@/utils/hooks/useAuth'
 
 const sideNavStyle = {
@@ -26,6 +26,7 @@ const sideNavCollapseStyle = {
 }
 
 const SideNav = () => {
+  const dispatch = useAppDispatch()
   const themeColor = useAppSelector((state) => state.theme.themeColor)
   const primaryColorLevel = useAppSelector(
     (state) => state.theme.primaryColorLevel
@@ -62,18 +63,33 @@ const SideNav = () => {
       direction={direction}
     />
   )
+  const handleMouseEnter = () => {
+    if (sideNavCollapse) {
+      dispatch(setSideNavCollapse(false));
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!sideNavCollapse) {
+      dispatch(setSideNavCollapse(true)); 
+    }
+  };
+
 
   return (
     <>
       {larger.md && (
+
         <div
           style={sideNavCollapse ? sideNavCollapseStyle : sideNavStyle}
           className={classNames(
             'side-nav',
-            '',
+            'sidenav-expanded-hover',
             sideNavColor(),
             !sideNavCollapse && 'side-nav-expand'
           )}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           <div className="side-nav-header mb-4 mt-4">
             <Logo
@@ -95,6 +111,7 @@ const SideNav = () => {
             </div>
           )}
         </div>
+
       )}
     </>
   )
