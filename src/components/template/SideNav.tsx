@@ -13,6 +13,7 @@ import VerticalMenuContent from '@/components/template/VerticalMenuContent'
 import useResponsive from '@/utils/hooks/useResponsive'
 import { setSideNavCollapse, useAppDispatch, useAppSelector } from '@/store'
 import useAuth from '@/utils/hooks/useAuth'
+import { useEffect } from 'react'
 
 const sideNavStyle = {
   width: SIDE_NAV_WIDTH,
@@ -75,6 +76,12 @@ const SideNav = () => {
     }
   };
 
+  useEffect(() => {
+    if (!larger.md) {
+      dispatch(setSideNavCollapse(false))
+    }
+  }, [larger.md, dispatch])
+
 
   return (
     <>
@@ -85,6 +92,7 @@ const SideNav = () => {
           className={classNames(
             'side-nav',
             'sidenav-expanded-hover',
+            
             sideNavColor(),
             !sideNavCollapse && 'side-nav-expand'
           )}
