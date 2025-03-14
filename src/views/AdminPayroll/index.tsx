@@ -100,14 +100,14 @@ const AdminPayroll = () => {
               </Th>
               <Th>Socio</Th>
               <Th>Bono Inicio Rapido</Th>
-              <Th>Bono Mentor </Th>
-              <Th>Bono Presentador </Th>
-              <Th>Bono Auto</Th>
+              {/* <Th>Bono Mentor </Th> */}
+              {/* <Th>Bono Presentador </Th>
+              <Th>Bono Auto</Th> */}
               <Th>Bono Binario</Th>
-              <Th>5% fee</Th>
+              <Th>15% Inversion</Th>
               <Th>Total (D+B-F)</Th>
-              <Th>Wallet (LTC)</Th>
-              <Th>Bank</Th>
+              <Th>Wallet (USDT)</Th>
+              {/* <Th>Bank</Th> */}
             </Tr>
           </THead>
           <TBody>
@@ -122,7 +122,7 @@ const AdminPayroll = () => {
                   {formatNumberWithCommas(
                     users.reduce(
                       (a, b) =>
-                        a + (b?.bond_quick_start || 0) + (b?.bond_founder || 0),
+                        a + (b?.bond_direct || 0) + (b?.bond_founder || 0),
                       0
                     ),
                     2
@@ -130,7 +130,7 @@ const AdminPayroll = () => {
                   usd
                 </b>
               </Td>
-              <Td>
+              {/* <Td>
                 <b className="whitespace-nowrap">
                   $
                   {formatNumberWithCommas(
@@ -139,8 +139,8 @@ const AdminPayroll = () => {
                   )}{' '}
                   usd
                 </b>
-              </Td>
-              <Td>
+              </Td> */}
+              {/* <Td>
                 <b className="whitespace-nowrap">
                   $
                   {formatNumberWithCommas(
@@ -159,7 +159,7 @@ const AdminPayroll = () => {
                   )}{' '}
                   usd
                 </b>
-              </Td>
+              </Td> */}
               <Td>
                 <b className="whitespace-nowrap">
                   $
@@ -174,7 +174,7 @@ const AdminPayroll = () => {
                 <b className="whitespace-nowrap">
                   $
                   {formatNumberWithCommas(
-                    users.reduce((a, b) => a + b?.fee || 0, 0),
+                    users.reduce((a, b) => a + b?.bond_investment || 0, 0),
                     2
                   )}{' '}
                   usd
@@ -203,38 +203,38 @@ const AdminPayroll = () => {
                   >
                     <Td>
                       <Checkbox
-                        disabled={!user.wallet_bitcoin || user.total < 40}
+                        disabled={!user.wallet_usdt || user.total < 40}
                       />
                     </Td>
                     <Td>{user.name}</Td>
                     <Td>
                       {formatNumberWithCommas(
-                        (user?.bond_quick_start || 0) +
+                        (user?.bond_direct || 0) +
                           (user?.bond_founder || 0),
                         2
                       )}{' '}
                       USD
                     </Td>
-                    <Td>
+                    {/* <Td>
                       {formatNumberWithCommas(user?.bond_mentor || 0, 2)} USD
                     </Td>
                     <Td>
                       {formatNumberWithCommas(user?.bond_presenter || 0, 2)} USD
                     </Td>
-                    <Td>{user?.bond_car || 0} USD</Td>
+                    <Td>{user?.bond_car || 0} USD</Td> */}
                     <Td>
                       {formatNumberWithCommas(user?.bond_binary || 0, 2)} USD
                     </Td>
-                    <Td>-{user?.fee || 0} USD</Td>
+                    <Td>{user?.bond_investment || 0} USD</Td>
                     <Td>{formatNumberWithCommas(user?.total || 0, 2)} USD</Td>
                     <Td>
-                      {user.wallet_litecoin ? (
+                      {user.wallet_usdt ? (
                         <FaCheck className="text-green-400" />
                       ) : (
                         <FaTimes className="text-red-400" />
                       )}
                     </Td>
-                    <Td>
+                    {/* <Td>
                       <div className="flex items-center">
                         <span>Bank: </span>
                         {user.bank_account ? (
@@ -251,7 +251,7 @@ const AdminPayroll = () => {
                           <FaTimes className="text-red-400" />
                         )}
                       </div>
-                    </Td>
+                    </Td> */}
                   </Tr>
                 ))}
           </TBody>

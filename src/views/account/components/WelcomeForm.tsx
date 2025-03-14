@@ -73,7 +73,7 @@ const WelcomeForm = ({ data, setOpenWelcomeModal }: any) => {
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required('User Name Required'),
-    birthdate: Yup.date().required('Date Required'),
+    // birthdate: Yup.date().required('Date Required'),
     //email: Yup.string().email('Invalid email').required('Email Required'),
     wallet_usdt: Yup.string().optional(),
     // rfc: Yup.string().optional(),
