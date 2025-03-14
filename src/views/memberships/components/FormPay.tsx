@@ -13,6 +13,7 @@ import { db } from '@/configs/firebaseConfig'
 import ButtonSwapCurrency, { currencyIcon } from './ButtonSwapCurrency'
 import { Periods } from '../membership'
 import classNames from 'classnames'
+import { SiTether } from 'react-icons/si'
 
 const FormPay = ({
   type,
@@ -138,10 +139,10 @@ const FormPay = ({
             />
           </div>
         )}
-
+        <span className='text-red-500'>ASEGURATE DE ENVIAR USDT DE LA RED DE TRON</span>
         <Input
           readOnly
-          prefix={<BsWallet />}
+          prefix={<SiTether />}
           value={isExpired && !amountChanged ? '' : address}
           className={classNames(
             user.payment_link![type].currency == 'MXN' && 'hidden'
