@@ -23,7 +23,7 @@ const sideNavStyle = {
 const sideNavCollapseStyle = {
   width: SIDE_NAV_COLLAPSED_WIDTH,
   minWidth: SIDE_NAV_COLLAPSED_WIDTH,
-  zIndex: 999
+
 }
 
 const SideNav = () => {
