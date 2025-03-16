@@ -83,13 +83,13 @@ const AdminPayroll = () => {
               <Th>Lado de binario cobrado</Th>
               <Th>Puntos izquierda</Th>
               <Th>Puntos derecha</Th>
-              <Th>Cantidad LTC</Th>
+              {/* <Th>Cantidad LTC</Th> */}
               <Th>Bono Inicio Rapido</Th>
               <Th>Bono Binario</Th>
-              <Th>Bono Mentor</Th>
-              <Th>Bono Carro</Th>
+              {/* <Th>Bono Mentor</Th>
+              <Th>Bono Carro</Th> */}
               <Th>Subtotal USD</Th>
-              <Th>Comisión</Th>
+              {/* <Th>Comisión</Th> */}
               <Th>Total USD</Th>
             </Tr>
           </THead>
@@ -112,23 +112,23 @@ const AdminPayroll = () => {
                 <Td>{payroll?.binary_side || 0} </Td>
                 <Td>{payroll?.left_points || 0} </Td>
                 <Td>{payroll?.right_points || 0}</Td>
-                <Td className="whitespace-nowrap">
+                {/* <Td className="whitespace-nowrap">
                   {payroll?.btc_amount || 0} BTC
-                </Td>
+                </Td> */}
                 <Td className="whitespace-nowrap">
                   {payroll?.bond_quick_start} USD
                 </Td>
                 <Td className="whitespace-nowrap">
                   {payroll?.bond_binary} USD
                 </Td>
-                <Td className="whitespace-nowrap">
+                {/* <Td className="whitespace-nowrap">
                   {payroll?.bond_mentor} USD
                 </Td>
                 <Td className="whitespace-nowrap">
                   {payroll?.bond_car || 0} USD
-                </Td>
+                </Td> */}
                 <Td className="whitespace-nowrap">{payroll?.subtotal} USD</Td>
-                <Td className="whitespace-nowrap">{payroll?.fee} USD</Td>
+                {/* <Td className="whitespace-nowrap">{payroll?.fee} USD</Td> */}
                 <Td className="whitespace-nowrap">
                   <b>{payroll?.total} USD</b>
                 </Td>

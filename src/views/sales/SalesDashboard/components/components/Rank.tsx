@@ -148,6 +148,8 @@ const Rank = () => {
         )
     getDocs(_query).then((snap) => {
       setPayrollDetails(() => snap.docs.map((d) => d.data()))
+    }).catch((err) => {
+      console.error("fallo al obtener la consulta", err)
     })
   }, [lastPayroll])
 
@@ -190,6 +192,7 @@ const Rank = () => {
   }
 
   const openDetails = (...types: string[]) => {
+    console.log("payroll", payrollDetails)
     setModalDetails(payrollDetails.filter((r) => types.includes(r.type)))
     setIsOpenModal(true)
   }
@@ -313,7 +316,7 @@ const Rank = () => {
           </div>
         </Card>
 
-        <Card onClick={() => openDetails('bond_mentor')}>
+        <Card onClick={() => openDetails('bond_investment')}>
           <div className="flex space-x-2 items-center">
             <div className="rounded-full h-[40px] w-[40px] p-2 flex items-center justify-center bg-gray-300">
               <FaPeopleLine size={30} className="text-green-700" />
