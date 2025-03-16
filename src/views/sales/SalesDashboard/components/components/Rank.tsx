@@ -1,4 +1,4 @@
-import { BsTrophy } from 'react-icons/bs'
+import { BsClock, BsTrophy } from 'react-icons/bs'
 import {
   onSnapshot,
   doc,
@@ -22,6 +22,7 @@ import { FaRegMoneyBill1, FaNetworkWired, FaPeopleLine } from 'react-icons/fa6'
 import { RiPresentationFill } from 'react-icons/ri'
 import { formatNumberWithCommas } from '@/utils/format'
 import { usersIndex } from '@/algolia'
+import { CgLock } from 'react-icons/cg'
 
 const Rank = () => {
   const userModal = useUserModalStore((state) => state)
@@ -40,7 +41,7 @@ const Rank = () => {
   const [isTopDollarsDisplayed, setIsTopDollarsDisplayed] = useState(false)
   const [totalAutomaticFranchisesProfits, setTotalAutomaticFranchisesProfits] =
     useState<number>(0)
-
+  const [expireMembership, setExpireMembership] = useState(null)
   useEffect(() => {
     if (user.uid) {
       const unsub1 = onSnapshot(doc(db, 'users/' + user.uid), (snap) => {
@@ -62,6 +63,8 @@ const Rank = () => {
       getRank('none')
     }
   }, [user.max_rank])
+
+
 
   useEffect(() => {
     if (user.uid) {
@@ -326,6 +329,19 @@ const Rank = () => {
           <div className="grid grid-cols-[max-content_1fr] gap-x-4 pl-2 text-xl">
             <span className="font-bold text-right">
               <span className="text-3xl">${user?.bond_investment || 0}</span>
+            </span>
+          </div>
+        </Card>
+        <Card >
+          <div className="flex space-x-2 items-center">
+            <div className="rounded-full h-[40px] w-[40px] p-2 flex items-center justify-center bg-gray-300">
+              <BsClock size={30} className="text-green-700" />
+            </div>
+            <span className="text-lg font-medium">Días Restantes</span>
+          </div>
+          <div className="grid grid-cols-[max-content_1fr] gap-x-4 pl-2 text-xl">
+            <span className="font-bold ">
+            {dayjs(user?.membership_expires_at).diff(dayjs(), 'days')} Días
             </span>
           </div>
         </Card>

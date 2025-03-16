@@ -59,6 +59,7 @@ export type UserState = {
   membership: string | null
   membership_status: 'paid' | 'expired' | null
   membership_expires_at: string | null
+  membership_started_at: string | null
   membership_cap_current?: number
   membership_cap_limit?: number
   zip?: string
@@ -172,6 +173,7 @@ const initialState: UserState = {
   position: 'left',
   membership: null,
   membership_expires_at: null,
+  membership_started_at: null,
   crypto_xpert_expires_at: null,
   pro_funnel_expires_at: null,
   insta_ads_expires_at: null,
@@ -326,6 +328,11 @@ const userSlice = createSlice({
           ? typeof payload.membership_expires_at == 'string'
             ? payload.membership_expires_at
             : dayjs(payload.membership_expires_at.seconds * 1000).toISOString()
+          : null,
+          state.membership_started_at = payload.membership_started_at
+          ? typeof payload.membership_started_at == 'string'
+            ? payload.membership_started_at
+            : dayjs(payload.membership_started_at.seconds * 1000).toISOString()
           : null
       }
     },

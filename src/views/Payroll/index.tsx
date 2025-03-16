@@ -88,7 +88,7 @@ const AdminPayroll = () => {
               <Th>Bono Binario</Th>
               {/* <Th>Bono Mentor</Th>
               <Th>Bono Carro</Th> */}
-              <Th>Subtotal USD</Th>
+              {/* <Th>Subtotal USD</Th> */}
               {/* <Th>Comisión</Th> */}
               <Th>Total USD</Th>
             </Tr>
@@ -116,7 +116,7 @@ const AdminPayroll = () => {
                   {payroll?.btc_amount || 0} BTC
                 </Td> */}
                 <Td className="whitespace-nowrap">
-                  {payroll?.bond_quick_start} USD
+                  {payroll?.bond_direct} USD
                 </Td>
                 <Td className="whitespace-nowrap">
                   {payroll?.bond_binary} USD
@@ -127,7 +127,7 @@ const AdminPayroll = () => {
                 <Td className="whitespace-nowrap">
                   {payroll?.bond_car || 0} USD
                 </Td> */}
-                <Td className="whitespace-nowrap">{payroll?.subtotal} USD</Td>
+                {/* <Td className="whitespace-nowrap">{payroll?.subtotal} USD</Td> */}
                 {/* <Td className="whitespace-nowrap">{payroll?.fee} USD</Td> */}
                 <Td className="whitespace-nowrap">
                   <b>{payroll?.total} USD</b>
