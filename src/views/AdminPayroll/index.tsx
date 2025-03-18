@@ -105,7 +105,8 @@ const AdminPayroll = () => {
               <Th>Bono Auto</Th> */}
               <Th>Bono Binario</Th>
               <Th>15% Inversion</Th>
-              <Th>Total (D+B-F)</Th>
+              <Th>Subtotal (D+B-F)</Th>
+              <Th className='!font-bold !text-black'>Total</Th>
               <Th>Wallet (USDT)</Th>
               {/* <Th>Bank</Th> */}
             </Tr>
@@ -190,7 +191,16 @@ const AdminPayroll = () => {
                   usd
                 </b>
               </Td>
-              <Td></Td>
+              <Td>
+                <b>
+                  $
+                  {formatNumberWithCommas(
+                    users.reduce((a, b) => a + (b?.total-b?.bond_investment || 0) || 0, 0),
+                    2
+                  )}{' '}
+                  usd
+                </b>
+              </Td>
               <Td></Td>
             </Tr>
             {users &&
@@ -210,7 +220,7 @@ const AdminPayroll = () => {
                     <Td>
                       {formatNumberWithCommas(
                         (user?.bond_direct || 0) +
-                          (user?.bond_founder || 0),
+                        (user?.bond_founder || 0),
                         2
                       )}{' '}
                       USD
@@ -227,6 +237,7 @@ const AdminPayroll = () => {
                     </Td>
                     <Td>{user?.bond_investment || 0} USD</Td>
                     <Td>{formatNumberWithCommas(user?.total || 0, 2)} USD</Td>
+                    <Td>{formatNumberWithCommas((user?.total - user?.bond_investment || 0) || 0, 2)} USD</Td>
                     <Td>
                       {user.wallet_usdt ? (
                         <FaCheck className="text-green-400" />
