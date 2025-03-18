@@ -38,9 +38,7 @@ const Rank = () => {
   const [modalDetails, setModalDetails] = useState<any[]>([])
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [isOpenModalBinary, setIsOpenModalBinary] = useState(false)
-  const [isTopDollarsDisplayed, setIsTopDollarsDisplayed] = useState(false)
-  const [totalAutomaticFranchisesProfits, setTotalAutomaticFranchisesProfits] =
-    useState<number>(0)
+  const [isOpenModalInvestment, setIsOpenModalInvestment] = useState(false)
   const [expireMembership, setExpireMembership] = useState(null)
   useEffect(() => {
     if (user.uid) {
@@ -103,7 +101,7 @@ const Rank = () => {
             const profit = Number(docu.data().automatic_franchise_cap_current)
             totalProfit += profit
           })
-          setTotalAutomaticFranchisesProfits(totalProfit)
+          // setTotalAutomaticFranchisesProfits(totalProfit)
         },
         (error) => {
           console.log(
@@ -117,7 +115,7 @@ const Rank = () => {
 
     if (user && user.uid) {
       if (!user.has_automatic_franchises) {
-        setTotalAutomaticFranchisesProfits(0)
+        // setTotalAutomaticFranchisesProfits(0)
       } else {
         getAutomaticFranchisesTotalProfits()
       }
@@ -141,14 +139,14 @@ const Rank = () => {
   useEffect(() => {
     const _query = lastPayroll
       ? query(
-          collection(db, 'users/' + user.uid + '/profits_details'),
-          where('created_at', '>=', lastPayroll.created_at),
-          orderBy('created_at', 'asc')
-        )
+        collection(db, 'users/' + user.uid + '/profits_details'),
+        where('created_at', '>=', lastPayroll.created_at),
+        orderBy('created_at', 'asc')
+      )
       : query(
-          collection(db, 'users/' + user.uid + '/profits_details'),
-          orderBy('created_at', 'asc')
-        )
+        collection(db, 'users/' + user.uid + '/profits_details'),
+        orderBy('created_at', 'asc')
+      )
     getDocs(_query).then((snap) => {
       setPayrollDetails(() => snap.docs.map((d) => d.data()))
     }).catch((err) => {
@@ -190,7 +188,7 @@ const Rank = () => {
     if (data && data.created_at) {
       const userCreatedAt = data.created_at?.toDate()
       const validTopDollarsDate = new Date('2023-12-05T00:00:00')
-      setIsTopDollarsDisplayed(userCreatedAt >= validTopDollarsDate)
+      // setIsTopDollarsDisplayed(userCreatedAt >= validTopDollarsDate)
     }
   }
 
@@ -198,6 +196,16 @@ const Rank = () => {
     console.log("payroll", payrollDetails)
     setModalDetails(payrollDetails.filter((r) => types.includes(r.type)))
     setIsOpenModal(true)
+  }
+
+  const openDetailsInvestment = (...types: string[]) => {
+    const payrollBefore = payrollDetails.filter((r) => types.includes(r.type)).map((d) => ({
+      ...d,
+      total: d.amount / 0.85,
+      bond_investment: (d.amount / 0.85) * 0.15
+    }))
+    setModalDetails(payrollBefore)
+    setIsOpenModalInvestment(true)
   }
 
   return (
@@ -319,7 +327,7 @@ const Rank = () => {
           </div>
         </Card>
 
-        <Card onClick={() => openDetails('bond_investment')}>
+        <Card onClick={() => openDetailsInvestment('bond_quick_start')}>
           <div className="flex space-x-2 items-center">
             <div className="rounded-full h-[40px] w-[40px] p-2 flex items-center justify-center bg-gray-300">
               <FaPeopleLine size={30} className="text-green-700" />
@@ -341,7 +349,7 @@ const Rank = () => {
           </div>
           <div className="grid grid-cols-[max-content_1fr] gap-x-4 pl-2 text-xl">
             <span className="font-bold ">
-            {dayjs(user?.membership_expires_at).diff(dayjs(), 'days')} Días
+              {dayjs(user?.membership_expires_at).diff(dayjs(), 'days')} Días
             </span>
           </div>
         </Card>
@@ -412,8 +420,59 @@ const Rank = () => {
                   <td className="text-right">
                     {r.created_at.seconds
                       ? dayjs(r.created_at.seconds * 1000).format(
-                          'DD/MM/YYYY HH:mm:ss'
-                        )
+                        'DD/MM/YYYY HH:mm:ss'
+                      )
+                      : null}
+                  </td>
+                </tr>
+              ))}
+              {modalDetails.length == 0 && (
+                <tr>
+                  <td colSpan={4} className="text-left">
+                    No hay datos
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </Dialog>
+
+      <Dialog
+        isOpen={isOpenModalInvestment}
+        className="!w-full"
+        onClose={() => setIsOpenModalInvestment(false)}
+      >
+        <div className="p-4">
+          <table className="w-full">
+            <thead>
+              <tr>
+                <th className="text-left">Concepto</th>
+                <th className="text-left">Usuario</th>
+                <th className="text-right">Total del bono</th>
+                <th className="text-right">15% Bono Investment</th>
+                <th className="text-right">Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              {modalDetails.map((r, idx) => (
+                <tr key={idx}>
+                  <td>{r.description}</td>
+                  <td>
+                    <span
+                      className="text-blue-500 underline hover:cursor-pointer"
+                      onClick={() => userModal.openModal(r.id_user)}
+                    >
+                      {r.user_name}
+                    </span>
+                  </td>
+                  <td className="text-right">{r.total} USD</td>
+                  <td className="text-right">{r.bond_investment} USD</td>
+                  <td className="text-right">
+                    {r.created_at.seconds
+                      ? dayjs(r.created_at.seconds * 1000).format(
+                        'DD/MM/YYYY HH:mm:ss'
+                      )
                       : null}
                   </td>
                 </tr>

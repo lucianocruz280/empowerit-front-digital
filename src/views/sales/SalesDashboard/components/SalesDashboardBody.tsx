@@ -119,11 +119,11 @@ const SalesDashboardBody = () => {
 
   return (
     <Loading /* loading={loading} */>
-      <Dialog isOpen={isOpenModal} onClose={closeModal}>
+      {/* <Dialog isOpen={isOpenModal} onClose={closeModal}>
         <div className="py-5">
           <img src="/img/retiro-de-liderazgo-mexico-colombia.jpg" />
         </div>
-      </Dialog>
+      </Dialog> */}
       {/* <Dialog isOpen={secondModal} onClose={() => setSecondModal(false)} >
         <div className='py-5'>
           <img src="/img/pack-founder--vertical.png" />
