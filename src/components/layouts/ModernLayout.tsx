@@ -6,15 +6,36 @@ import SideNav from '@/components/template/SideNav'
 import View from '@/views'
 import { useAppSelector } from '@/store'
 import { OPTIONS, OPTIONS2 } from '@/utils/packs'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Dialog } from '../ui'
 import RechargeCreditsCard from './RechargeCreditsCard'
+import { Card } from '@/views/sales/SalesDashboard/components/components/Indicators'
+import dayjs from 'dayjs'
+import { doc, onSnapshot } from 'firebase/firestore'
+import { db } from '@/configs/firebaseConfig'
+
 
 const HeaderActionsStart = () => {
+  const user = useAppSelector((state) => state.auth.user)
+  const [data, setData] = useState<any>({})
+  useEffect(() => {
+    if (user.uid) {
+      const unsub1 = onSnapshot(doc(db, 'users/' + user.uid), (snap) => {
+        setData(snap.data())
+      })
+      return () => {
+        unsub1()
+      }
+    }
+  }, [user.uid])
   return (
     <>
       <MobileNav />
       <SideNavToggle />
+      <div className='flex gap-4'>
+       
+        <div className='bg-custom-gradient text-white font-bold text-xl rounded-[10px] p-3 card-border cursor-pointer user-select-none hover:shadow-lg flex flex-col space-y-2'>Ganancias Obtenidas: ${data?.profits?.toFixed(2) || 0}{' '}</div>
+      </div>
     </>
   )
 }
@@ -43,6 +64,7 @@ const HeaderActionsEnd = () => {
     <>
       {user?.membership && (
         <div className="flex items-center">
+           <div className='bg-custom-order text-white font-bold text-lg rounded-[10px] p-2 card-border cursor-pointer user-select-none hover:shadow-lg flex flex-col space-y-2'>Días Restantes: {dayjs(user?.membership_expires_at).diff(dayjs(), 'days')}</div>
           {/* <p
             className="px-1 font-bold hover:cursor-pointer"
             onClick={() => setOpen(true)}

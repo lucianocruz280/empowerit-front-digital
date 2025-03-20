@@ -69,6 +69,24 @@ module.exports = {
         'vip-pack': '#bd9c3a',
         'elite-pack': '#959595',
       },
+      backgroundColor: {
+        'custom-rgba': 'rgba(7, 10, 41, 0.3)',
+        'custom-gradient-color':
+          'linear-gradient(to right, #A243FF 0%, #7673FF 30%, #13DEFE 100%)',
+      },
+      backgroundImage: {
+        gradient:
+          'linear-gradient(90deg, rgba(162,67,255,1) 0%, rgba(118,115,255,1) 35%, rgba(19,222,254,1) 100%)',
+        'custom-close': 'linear-gradient(to right, #ff2020, #ac2038)',
+        'custom-order': 'linear-gradient(to left, #4272C7, #70a1f5)',
+        'custom-pay': 'linear-gradient(to right, #6bc258, #13605b)',
+        'custom-gradient':
+          'linear-gradient(to right, #A243FF 0%, #7673FF 30%, #13DEFE 100%)',
+        'gradient-academy':
+          'linear-gradient(to bottom, #A243FF60 0%, #ffffff 45%)',
+        'gradient-academy-purple': 'linear-gradient(to bottom, rgba(255, 255, 255, 0.4) 40%, rgba(146, 104, 187, 1) 100%)',
+        'gradient-academy-white': 'linear-gradient(to bottom, rgba(255, 255, 255, .4) 40%, rgba(255, 255, 255, 1) 100%)',
+      },
       typography: (theme) => ({
         DEFAULT: {
           css: {

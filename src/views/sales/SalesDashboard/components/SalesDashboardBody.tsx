@@ -14,6 +14,7 @@ import { doc, onSnapshot } from 'firebase/firestore'
 import { getRestDaysMembership } from '@/utils/membership'
 import dayjs from 'dayjs'
 import CapSlider from './CapSlider'
+import Indicators from './components/Indicators'
 
 const modalName = 'modal-2'
 
@@ -138,8 +139,8 @@ const SalesDashboardBody = () => {
           className="w-full"
         />
       </div>
-     
-      <Rank />
+      <Indicators />
+      {/* <Rank /> */}
 
       <div
         className="card hover:shadow-lg transition duration-150 ease-in-out hover:dark:border-gray-400  p-4  card-border bg-slate-100 rounded-[10px]"
