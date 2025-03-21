@@ -32,9 +32,9 @@ const HeaderActionsStart = () => {
     <>
       <MobileNav />
       <SideNavToggle />
-      <div className='flex gap-4'>
+      <div className='hidden lg:flex gap-4'>
        
-        <div className='bg-custom-gradient text-white font-bold text-xl rounded-[10px] p-3 card-border cursor-pointer user-select-none hover:shadow-lg flex flex-col space-y-2'>Ganancias Obtenidas: ${data?.profits?.toFixed(2) || 0}{' '}</div>
+        <div className='bg-custom-gradient text-white font-bold text-xl rounded-[10px]  p-3 card-border cursor-pointer user-select-none hover:shadow-lg flex flex-col space-y-2'>Ganancias Obtenidas: ${data?.profits?.toFixed(2) || 0}{' '}</div>
       </div>
     </>
   )
@@ -63,8 +63,8 @@ const HeaderActionsEnd = () => {
   return (
     <>
       {user?.membership && (
-        <div className="flex items-center">
-           <div className='bg-custom-order text-white font-bold text-lg rounded-[10px] p-2 card-border cursor-pointer user-select-none hover:shadow-lg flex flex-col space-y-2'>Días Restantes: {dayjs(user?.membership_expires_at).diff(dayjs(), 'days')}</div>
+        <div className="hidden lg:flex items-center">
+           <div className=' bg-custom-order text-white font-bold text-lg rounded-[10px] p-2 card-border cursor-pointer user-select-none hover:shadow-lg flex flex-col space-y-2'>Días Restantes: {dayjs(user?.membership_expires_at).diff(dayjs(), 'days')}</div>
           {/* <p
             className="px-1 font-bold hover:cursor-pointer"
             onClick={() => setOpen(true)}

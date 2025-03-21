@@ -130,6 +130,10 @@ const SalesDashboardBody = () => {
           <img src="/img/pack-founder--vertical.png" />
         </div>
       </Dialog> */}
+      <div className='flex flex-col lg:hidden gap-2'>
+        <div className='bg-custom-gradient text-white font-bold text-xl rounded-[10px]  p-3 card-border cursor-pointer user-select-none hover:shadow-lg text-center space-y-2'>Ganancias Obtenidas: ${data?.profits?.toFixed(2) || 0}{' '}</div>
+        <div className=' bg-custom-order text-white font-bold text-lg rounded-[10px] p-3 card-border cursor-pointer user-select-none hover:shadow-lg text-center space-y-2'>Días Restantes: {dayjs(user?.membership_expires_at).diff(dayjs(), 'days')}</div>
+      </div>
       <div
         className="card hover:shadow-lg transition duration-150 ease-in-out hover:dark:border-gray-400  p-4  card-border bg-slate-100 rounded-[10px]"
         role="presentation"

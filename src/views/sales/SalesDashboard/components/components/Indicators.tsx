@@ -237,10 +237,11 @@ const Indicators = () => {
                     </div>
                   </Dialog>
             {/* modales */}
-            <span className="text-xl">Total Históricos</span>
-            <span className="text-xl">Ganancias por Cobrar</span>
-            <span className=""></span>
+           
+           
+      
             <div className="flex flex-col gap-4">
+            <span className="text-xl">Total Históricos</span>
                 <Card >
                     <div className="flex space-x-2 items-center">
                         <div className="rounded-full h-[40px] w-[40px] p-2 flex items-center justify-center bg-gray-300">
@@ -295,6 +296,7 @@ const Indicators = () => {
             </div>
             {/* columna dos de ganancias por cobrar */}
             <div className="flex flex-col gap-4">
+            <span className="text-xl">Ganancias por Cobrar</span>
                 <Card onClick={() => openDetails('bond_quick_start')}>
                     <div className="flex space-x-2 items-center">
                         <div className="rounded-full h-[40px] w-[40px] p-2 flex items-center justify-center bg-gray-300">
@@ -350,6 +352,7 @@ const Indicators = () => {
             {/* columna de miembros */}
 
             <div className="flex flex-col gap-4">
+            <span className="lg:pt-7">{}</span>
                 <Card >
                     <div className="flex space-x-2 items-center">
                         <div className="rounded-full h-[40px] w-[40px] p-2 flex items-center justify-center bg-gray-300">
