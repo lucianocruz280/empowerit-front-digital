@@ -79,7 +79,11 @@ const Indicators = () => {
 
     const openDetails = (...types: string[]) => {
         console.log("payroll", payrollDetails)
-        setModalDetails(payrollDetails.filter((r) => types.includes(r.type)))
+        setModalDetails(payrollDetails.filter((r) => types.includes(r.type)).map((d) => ({
+            ...d,
+            total: d.amount / 0.85,
+            bond_investment: (d.amount / 0.85) * 0.15
+        })))
         setIsOpenModal(true)
     }
     const openDetailsInvestment = (...types: string[]) => {
@@ -190,7 +194,7 @@ const Indicators = () => {
 
              <Dialog
                     isOpen={isOpenModal}
-                    width={700}
+                     className="!w-full"
                     onClose={() => setIsOpenModal(false)}
                   >
                     <div className="p-4">
@@ -199,7 +203,9 @@ const Indicators = () => {
                           <tr>
                             <th className="text-left">Concepto</th>
                             <th className="text-left">Usuario</th>
-                            <th className="text-right">USD</th>
+                            <th className="text-right">Bono total</th>
+                            <th className="text-right">-15% Investment</th>
+                            <th className="text-right">Total USD</th>
                             <th className="text-right">Fecha</th>
                           </tr>
                         </thead>
@@ -215,7 +221,9 @@ const Indicators = () => {
                                   {r.user_name}
                                 </span>
                               </td>
-                              <td className="text-right">{r.amount}</td>
+                              <td className="text-right">{r?.total || 0}</td>
+                              <td className="text-right">{r?.bond_investment}</td>
+                              <td className="text-right">{r?.amount || 0}</td>
                               <td className="text-right">
                                 {r.created_at.seconds
                                   ? dayjs(r.created_at.seconds * 1000).format(

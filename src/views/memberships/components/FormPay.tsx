@@ -169,7 +169,7 @@ const FormPay = ({
           ) : null}
           <Input
             readOnly
-            prefix={currencyIcon[user.payment_link![type].currency || 'BTC']}
+            prefix={<SiTether />}
             value={isExpired && !amountChanged ? '' : amount.toFixed(8)}
             suffix={
               <div className="flex items-center space-x-2">
