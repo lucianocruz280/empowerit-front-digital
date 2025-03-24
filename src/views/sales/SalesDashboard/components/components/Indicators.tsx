@@ -4,7 +4,7 @@ import { db } from "@/configs/firebaseConfig"
 import { useAppSelector } from "@/store"
 import useUserModalStore from "@/zustand/userModal"
 import dayjs from "dayjs"
-import { collection, doc, getDocs, limit, onSnapshot, orderBy, query, where } from "firebase/firestore"
+import { collection, doc, getDoc, getDocs, limit, onSnapshot, orderBy, query, where } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { FaTrophy } from "react-icons/fa"
 import { FaNetworkWired, FaPeopleArrows, FaPeopleLine, FaRegMoneyBill1 } from "react-icons/fa6"
@@ -23,6 +23,7 @@ const Indicators = () => {
     const userModal = useUserModalStore((state) => state)
     const [data, setData] = useState<any>({})
     const [loading, setLoading] = useState(true)
+    const [binaryPoints, setBinaryPoints] = useState(0)
     useEffect(() => {
         if (user.uid) {
             const unsub1 = onSnapshot(doc(db, 'users/' + user.uid), (snap) => {
@@ -98,44 +99,59 @@ const Indicators = () => {
 
     useEffect(() => {
         if (typeof user.max_rank == 'string') {
-          getRank(user.max_rank)
+            getRank(user.max_rank)
         } else {
-          getRank('none')
+            getRank('none')
         }
-      }, [user.max_rank])
-    
-    
+    }, [user.max_rank])
+
+
 
 
     const getRank = async (id: string) => {
         setLoading(true)
         try {
-          const response = await fetch(
-            `${import.meta.env.VITE_API_URL}/ranks/getRankKey/${id}`,
-            {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                id_user: user.uid,
-              }),
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/ranks/getRankKey/${id}`,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        id_user: user.uid,
+                    }),
+                }
+            )
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok')
             }
-          )
-    
-          if (!response.ok) {
-            throw new Error('Network response was not ok')
-          }
-    
-          const data = await response.json()
-          setRank(data)
-          setLoading(false)
+
+            const data = await response.json()
+            setRank(data)
+            setLoading(false)
         } catch (error) {
-          setLoading(false)
-    
-          return { status: 'error', error }
+            setLoading(false)
+
+            return { status: 'error', error }
         }
-      }
+    }
+
+    console.log("el porcentaje es", rank)
+
+
+    useEffect(() => {
+        const getBinaryPoints = async () => {
+            if (!user.uid) return
+            const userRef = await getDoc(doc(db, 'users', user.uid))
+            const smallLeg = user.left_points > user.right_points ? 'right_points' : 'left_points'
+            const binary_position = userRef.get(smallLeg)
+            const binarypoints = binary_position * (rank?.binary_percent ? rank.binary_percent : 0.07)
+            setBinaryPoints(binarypoints)
+        }
+        getBinaryPoints()
+    }, [rank?.binary_percent])
 
     return (
 
@@ -192,64 +208,64 @@ const Indicators = () => {
                 </div>
             </Dialog>
 
-             <Dialog
-                    isOpen={isOpenModal}
-                     className="!w-full"
-                    onClose={() => setIsOpenModal(false)}
-                  >
-                    <div className="p-4">
-                      <table className="w-full">
+            <Dialog
+                isOpen={isOpenModal}
+                className="!w-full"
+                onClose={() => setIsOpenModal(false)}
+            >
+                <div className="p-4">
+                    <table className="w-full">
                         <thead>
-                          <tr>
-                            <th className="text-left">Concepto</th>
-                            <th className="text-left">Usuario</th>
-                            <th className="text-right">Bono total</th>
-                            <th className="text-right">-15% Investment</th>
-                            <th className="text-right">Total USD</th>
-                            <th className="text-right">Fecha</th>
-                          </tr>
+                            <tr>
+                                <th className="text-left">Concepto</th>
+                                <th className="text-left">Usuario</th>
+                                <th className="text-right">Bono total</th>
+                                <th className="text-right">-15% Investment</th>
+                                <th className="text-right">Total USD</th>
+                                <th className="text-right">Fecha</th>
+                            </tr>
                         </thead>
                         <tbody>
-                          {modalDetails.map((r, idx) => (
-                            <tr key={idx}>
-                              <td>{r.description}</td>
-                              <td>
-                                <span
-                                  className="text-blue-500 underline hover:cursor-pointer"
-                                  onClick={() => userModal.openModal(r.id_user)}
-                                >
-                                  {r.user_name}
-                                </span>
-                              </td>
-                              <td className="text-right">{r?.total || 0}</td>
-                              <td className="text-right">{r?.bond_investment}</td>
-                              <td className="text-right">{r?.amount || 0}</td>
-                              <td className="text-right">
-                                {r.created_at.seconds
-                                  ? dayjs(r.created_at.seconds * 1000).format(
-                                    'DD/MM/YYYY HH:mm:ss'
-                                  )
-                                  : null}
-                              </td>
-                            </tr>
-                          ))}
-                          {modalDetails.length == 0 && (
-                            <tr>
-                              <td colSpan={4} className="text-left">
-                                No hay datos
-                              </td>
-                            </tr>
-                          )}
+                            {modalDetails.map((r, idx) => (
+                                <tr key={idx}>
+                                    <td>{r.description}</td>
+                                    <td>
+                                        <span
+                                            className="text-blue-500 underline hover:cursor-pointer"
+                                            onClick={() => userModal.openModal(r.id_user)}
+                                        >
+                                            {r.user_name}
+                                        </span>
+                                    </td>
+                                    <td className="text-right">{r?.total || 0}</td>
+                                    <td className="text-right">{r?.bond_investment}</td>
+                                    <td className="text-right">{r?.amount || 0}</td>
+                                    <td className="text-right">
+                                        {r.created_at.seconds
+                                            ? dayjs(r.created_at.seconds * 1000).format(
+                                                'DD/MM/YYYY HH:mm:ss'
+                                            )
+                                            : null}
+                                    </td>
+                                </tr>
+                            ))}
+                            {modalDetails.length == 0 && (
+                                <tr>
+                                    <td colSpan={4} className="text-left">
+                                        No hay datos
+                                    </td>
+                                </tr>
+                            )}
                         </tbody>
-                      </table>
-                    </div>
-                  </Dialog>
+                    </table>
+                </div>
+            </Dialog>
             {/* modales */}
-           
-           
-      
+
+
+
             <div className="flex flex-col gap-4">
-            <span className="text-xl">Total Históricos</span>
+                <span className="text-xl">Total Históricos</span>
                 <Card >
                     <div className="flex space-x-2 items-center">
                         <div className="rounded-full h-[40px] w-[40px] p-2 flex items-center justify-center bg-gray-300">
@@ -304,7 +320,7 @@ const Indicators = () => {
             </div>
             {/* columna dos de ganancias por cobrar */}
             <div className="flex flex-col gap-4">
-            <span className="text-xl">Ganancias por Cobrar</span>
+                <span className="text-xl">Ganancias por Cobrar</span>
                 <Card onClick={() => openDetails('bond_quick_start')}>
                     <div className="flex space-x-2 items-center">
                         <div className="rounded-full h-[40px] w-[40px] p-2 flex items-center justify-center bg-gray-300">
@@ -333,7 +349,7 @@ const Indicators = () => {
                         <span className="font-bold text-right">
                             ${' '}
                             <span className="text-3xl">
-                                0
+                                {binaryPoints}
                             </span>{' '}
                             USD
                         </span>
@@ -360,7 +376,7 @@ const Indicators = () => {
             {/* columna de miembros */}
 
             <div className="flex flex-col gap-4">
-            <span className="lg:pt-7">{}</span>
+                <span className="lg:pt-7">{ }</span>
                 <Card >
                     <div className="flex space-x-2 items-center">
                         <div className="rounded-full h-[40px] w-[40px] p-2 flex items-center justify-center bg-gray-300">
