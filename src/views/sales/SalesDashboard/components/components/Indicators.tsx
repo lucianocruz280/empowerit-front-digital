@@ -8,22 +8,25 @@ import { collection, doc, getDoc, getDocs, limit, onSnapshot, orderBy, query, wh
 import { useEffect, useState } from "react"
 import { FaTrophy } from "react-icons/fa"
 import { FaNetworkWired, FaPeopleArrows, FaPeopleLine, FaRegMoneyBill1 } from "react-icons/fa6"
+import useRank from '../../../../../hooks/useRank';
+import DialogBinary from "./DialogBinary"
 
 const Indicators = () => {
     const user = useAppSelector((state) => state.auth.user)
+    const { rank, loading } = useRank()
     const [payrollDirect, setPayrollDirect] = useState(0)
     const [payrollBinary, setPayrollBinary] = useState(0)
     const [payrollInvestment, setPayrollInvestment] = useState(0)
     const [modalDetails, setModalDetails] = useState<any[]>([])
     const [isOpenModal, setIsOpenModal] = useState(false)
     const [payrollDetails, setPayrollDetails] = useState<any[]>([])
-    const [rank, setRank] = useState<any>(null)
     const [lastPayroll, setLastPayroll] = useState<any>(null)
     const [isOpenModalInvestment, setIsOpenModalInvestment] = useState(false)
     const userModal = useUserModalStore((state) => state)
     const [data, setData] = useState<any>({})
-    const [loading, setLoading] = useState(true)
     const [binaryPoints, setBinaryPoints] = useState(0)
+    const [binarySide, setBinarySide] = useState<'left_points' | 'right_points'>('left_points')
+    const [isOpenBianry, setIsOpenBinary] = useState(false)
     useEffect(() => {
         if (user.uid) {
             const unsub1 = onSnapshot(doc(db, 'users/' + user.uid), (snap) => {
@@ -59,6 +62,8 @@ const Indicators = () => {
             })
         }
     }, [user.uid])
+
+    console.log("rango", rank)
 
     useEffect(() => {
         const _query = lastPayroll
@@ -98,50 +103,6 @@ const Indicators = () => {
     }
 
     useEffect(() => {
-        if (typeof user.max_rank == 'string') {
-            getRank(user.max_rank)
-        } else {
-            getRank('none')
-        }
-    }, [user.max_rank])
-
-
-
-
-    const getRank = async (id: string) => {
-        setLoading(true)
-        try {
-            const response = await fetch(
-                `${import.meta.env.VITE_API_URL}/ranks/getRankKey/${id}`,
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        id_user: user.uid,
-                    }),
-                }
-            )
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok')
-            }
-
-            const data = await response.json()
-            setRank(data)
-            setLoading(false)
-        } catch (error) {
-            setLoading(false)
-
-            return { status: 'error', error }
-        }
-    }
-
-    console.log("el porcentaje es", rank)
-
-
-    useEffect(() => {
         const getBinaryPoints = async () => {
             if (!user.uid) return
             const userRef = await getDoc(doc(db, 'users', user.uid))
@@ -149,6 +110,7 @@ const Indicators = () => {
             const binary_position = userRef.get(smallLeg)
             const binarypoints = binary_position * (rank?.binary_percent ? rank.binary_percent : 0.07)
             setBinaryPoints(binarypoints)
+            setBinarySide(smallLeg)
         }
         getBinaryPoints()
     }, [rank?.binary_percent])
@@ -156,7 +118,11 @@ const Indicators = () => {
     return (
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-
+            <DialogBinary
+                binary_side={binarySide}
+                isOpenModal={isOpenBianry}
+                setIsOpenModal={setIsOpenBinary}
+            />
             <Dialog
                 isOpen={isOpenModalInvestment}
                 className="!w-full"
@@ -338,7 +304,7 @@ const Indicators = () => {
                         </span>
                     </div>
                 </Card>
-                <Card onClick={() => openDetails('bond_binary')}>
+                <Card onClick={() => setIsOpenBinary(true)}>
                     <div className="flex space-x-2 items-center">
                         <div className="rounded-full h-[40px] w-[40px] p-2 flex items-center justify-center bg-gray-300">
                             <FaNetworkWired size={30} className="text-gray-700" />
@@ -349,7 +315,12 @@ const Indicators = () => {
                         <span className="font-bold text-right">
                             ${' '}
                             <span className="text-3xl">
-                                {binaryPoints}
+                                {loading ? (
+                                    <Spinner className={`select-loading-indicatior`} size={40} />
+                                ) : (
+                                    binaryPoints
+                                )
+                                }
                             </span>{' '}
                             USD
                         </span>

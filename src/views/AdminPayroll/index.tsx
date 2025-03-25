@@ -16,7 +16,6 @@ const AdminPayroll = () => {
   const [fee, setFee] = useState('')
   const [loadingFee, setLoadingFee] = useState(false)
   const [loadingPayment, setLoadingPayment] = useState(false)
-
   const getFees = async () => {
     try {
       setLoadingFee(true)
@@ -45,6 +44,7 @@ const AdminPayroll = () => {
           },
         }
       )
+
       window.location.reload()
     } catch (err) {
       console.error(err)
@@ -195,7 +195,7 @@ const AdminPayroll = () => {
                 <b>
                   $
                   {formatNumberWithCommas(
-                    users.reduce((a, b) => a + (b?.total-b?.bond_investment || 0) || 0, 0),
+                    users.reduce((a, b) => a + (b?.total - b?.bond_investment || 0) || 0, 0),
                     2
                   )}{' '}
                   usd
