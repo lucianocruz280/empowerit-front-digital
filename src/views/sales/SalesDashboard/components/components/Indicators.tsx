@@ -52,7 +52,7 @@ const Indicators = () => {
                     console.log(payrolls)
                     const dataDirect = payrolls.reduce((a, b) => a + b.bond_direct, 0)
                     const dataBinary = payrolls.reduce((a, b) => a + b.bond_binary, 0)
-                    const dataInvestment = payrolls.reduce((a, b) => a + b.bond_investment, 0)
+                    const dataInvestment = payrolls.reduce((a, b) => a + b?.bond_investment || 0, 0)
                     setPayrollDirect(dataDirect)
                     setPayrollBinary(dataBinary || 0)
                     setPayrollInvestment(dataInvestment)

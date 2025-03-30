@@ -82,7 +82,7 @@ const GenerateQR = ({
             <Button
               className="h-max"
               disabled={disabled}
-              onClick={() => _create('MXN', 'Coinpayments')}
+              onClick={() => _create('MXN', 'Fiat')}
             >
               <div className="flex flex-col items-center space-y-4">
                 <img src='/img/insignias/USDT.svg' className='w-[50px] h-[50px]' />
