@@ -6,7 +6,7 @@ import GenerateQR from './GenerateQR'
 import ConfirmMessage from './ConfirmMessage'
 import FormPay from './FormPay'
 import { Periods } from '../membership'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import OpenPayCheckout from '@/components/OpenpayCheckout/Checkout'
 
 const ShowQR = ({
@@ -25,11 +25,69 @@ const ShowQR = ({
   period: Periods
   founder?: boolean
   method: Method
- 
+
 }) => {
   // Se obtiene el usuario
   const user = useAppSelector((state) => state.auth.user)
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout
 
+    const polling = async () => {
+      const seconds = user?.payment_link?.[type]?.expires_at?.seconds
+      const expiredDate = seconds ? dayjs(seconds * 1000) : null
+      console.log(expiredDate && expiredDate >= dayjs())
+      if (
+        expiredDate &&
+        expiredDate >= dayjs() &&
+        user?.payment_link &&
+        user?.payment_link[type]
+      ) {
+        const url = `https://my.disruptivepayments.io/api/payments/status?network=POLYGON&address=${user.payment_link[type].address}`
+        const clientApiKey = 'qwyijs74vsjug5hn50nlfmcbzqic1l1743038848523'
+
+        try {
+          const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'client-api-key': clientApiKey
+            },
+          })
+
+          if (!response.ok) return
+          const res = await response.json()
+
+          if (res.data?.status) {
+            const status = res.data.status
+            
+            await fetch(
+              `${import.meta.env.VITE_API_URL}/subscriptions/getStatus/${status}`,
+              {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: user.email }),
+              }
+            )
+          }
+        } catch (err) {
+          console.error('Polling error:', err)
+        }
+      }
+    }
+
+
+    polling()
+
+    //se va a ejecutar cada 5s hasta que expires at sea menor al actual
+    intervalId = setInterval(polling, 5000)
+
+
+    return () => {
+      clearInterval(intervalId)
+    }
+  }, [user?.payment_link, user?.membership_expires_at, type])
   // Obtener fecha de expiración
   const expires_at = user?.membership_expires_at
   const expiredDate = expires_at ? dayjs(expires_at) : null
@@ -52,7 +110,7 @@ const ShowQR = ({
           createPaymentLink={createPaymentLink}
           options={options}
           founder={founder}
-    
+
         />
       </>
     )
@@ -96,7 +154,7 @@ const ShowQR = ({
           createPaymentLink={createPaymentLink}
           options={options}
           founder={founder}
-      
+
         />
       </>
     )
@@ -112,7 +170,7 @@ const ShowQR = ({
           createPaymentLink={createPaymentLink}
           options={options}
           founder={founder}
-       
+
         />
       </>
     )
