@@ -43,7 +43,7 @@ const ShowQR = ({
         user?.payment_link[type]
       ) {
         const url = `https://my.disruptivepayments.io/api/payments/status?network=POLYGON&address=${user.payment_link[type].address}`
-        const clientApiKey = 'qwyijs74vsjug5hn50nlfmcbzqic1l1743038848523'
+        const clientApiKey = import.meta.env.VITE_CLIENT_API_KEY
 
         try {
           const response = await fetch(url, {
