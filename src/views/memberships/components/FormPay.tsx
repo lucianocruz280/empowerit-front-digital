@@ -139,7 +139,7 @@ const FormPay = ({
             />
           </div>
         )}
-        <span className='text-red-500'>ASEGURATE DE ENVIAR USDT DE LA RED DE TRON</span>
+        <span className='text-red-500'>ASEGURATE DE ENVIAR USDT DE LA RED DE POL</span>
         <Input
           readOnly
           prefix={<SiTether />}

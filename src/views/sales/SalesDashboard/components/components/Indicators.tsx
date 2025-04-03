@@ -1,5 +1,5 @@
 
-import { Dialog, Spinner } from "@/components/ui"
+import { Button, Dialog, Spinner } from "@/components/ui"
 import { db } from "@/configs/firebaseConfig"
 import { useAppSelector } from "@/store"
 import useUserModalStore from "@/zustand/userModal"
@@ -152,7 +152,7 @@ const Indicators = () => {
                                         </span>
                                     </td>
                                     <td className="text-right">{r.total} USD</td>
-                                    <td className="text-right">{r.bond_investment} USD</td>
+                                    <td className="text-right">{r.bond_investment?.toFixed(2)} USD</td>
                                     <td className="text-right">
                                         {r.created_at.seconds
                                             ? dayjs(r.created_at.seconds * 1000).format(
@@ -171,6 +171,9 @@ const Indicators = () => {
                             )}
                         </tbody>
                     </table>
+                    <div className="flex justify-end">
+                        <Button disabled={user?.bond_investment == 0}>Solicitar Inversión</Button>
+                    </div>
                 </div>
             </Dialog>
 
@@ -204,8 +207,8 @@ const Indicators = () => {
                                         </span>
                                     </td>
                                     <td className="text-right">{r?.total || 0}</td>
-                                    <td className="text-right">{r?.bond_investment}</td>
-                                    <td className="text-right">{r?.amount || 0}</td>
+                                    <td className="text-right">{r?.bond_investment?.toFixed(2)}</td>
+                                    <td className="text-right">{r?.amount?.toFixed(2) || 0}</td>
                                     <td className="text-right">
                                         {r.created_at.seconds
                                             ? dayjs(r.created_at.seconds * 1000).format(
@@ -256,7 +259,7 @@ const Indicators = () => {
                         </div>
                         <span className="text-lg font-medium">Bono Binario</span>
                     </div>
-                    <div className="grid grid-cols-[max-content_1fr] gap-x-4 pl-2 text-xl">
+                    <div className="flex justify-between gap-x-4 pl-2 text-xl">
                         <span className="font-bold text-right">
                             ${' '}
                             <span className="text-3xl">
@@ -264,6 +267,7 @@ const Indicators = () => {
                             </span>{' '}
                             USD
                         </span>
+                        <span className="text-3xl font-medium">%{((rank?.binary_percent || 0.07) * 100).toFixed()}</span>
                     </div>
                 </Card>
                 <Card >
@@ -298,7 +302,7 @@ const Indicators = () => {
                         <span className="font-bold text-right">
                             ${' '}
                             <span className="text-3xl">
-                                {user.bond_quick_start}
+                                {user.bond_quick_start?.toFixed(2)}
                             </span>{' '}
                             USD
                         </span>
@@ -311,7 +315,7 @@ const Indicators = () => {
                         </div>
                         <span className="text-lg font-medium">Bono Binario</span>
                     </div>
-                    <div className="grid grid-cols-[max-content_1fr] gap-x-4 pl-2 text-xl">
+                    <div className="flex justify-between gap-x-4 pl-2 text-xl">
                         <span className="font-bold text-right">
                             ${' '}
                             <span className="text-3xl">
@@ -324,6 +328,7 @@ const Indicators = () => {
                             </span>{' '}
                             USD
                         </span>
+                        <span className="text-3xl font-medium">%{((rank?.binary_percent || 0.07) * 100).toFixed()}</span>
                     </div>
                 </Card>
                 <Card onClick={() => openDetailsInvestment('bond_quick_start')}>
@@ -337,7 +342,7 @@ const Indicators = () => {
                         <span className="font-bold text-right">
                             ${' '}
                             <span className="text-3xl">
-                                {user.bond_investment}
+                                {user?.bond_investment?.toFixed(2)}
                             </span>{' '}
                             USD
                         </span>

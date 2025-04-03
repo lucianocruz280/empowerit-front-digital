@@ -1,7 +1,7 @@
 import dayjs from 'dayjs'
 import { Memberships, Coins, Method } from '../methods'
 import { useAppSelector } from '@/store'
-import { Spinner } from '@/components/ui'
+import { Progress, Spinner } from '@/components/ui'
 import GenerateQR from './GenerateQR'
 import ConfirmMessage from './ConfirmMessage'
 import FormPay from './FormPay'
@@ -29,6 +29,7 @@ const ShowQR = ({
 }) => {
   // Se obtiene el usuario
   const user = useAppSelector((state) => state.auth.user)
+  const [payment, setPayment] = useState<{ processStep: number, processTotalSteps: number } | null>(null)
   useEffect(() => {
     let intervalId: NodeJS.Timeout
 
@@ -59,7 +60,7 @@ const ShowQR = ({
 
           if (res.data?.status) {
             const status = res.data.status
-            
+            setPayment(res.data)
             await fetch(
               `${import.meta.env.VITE_API_URL}/subscriptions/getStatus/${status}`,
               {
@@ -119,22 +120,36 @@ const ShowQR = ({
   if (
     user.payment_link &&
     user.payment_link[type] &&
-    user.payment_link[type].status == 'pending'
+    user.payment_link[type].status == 'pending' &&
+    payment && payment.processStep > 1
   )
-    return (
-      <>
-        <FormPay
-          type={type}
-          loading={loading}
-          createPaymentLink={createPaymentLink}
-          period={period}
-          openModal={() => {
-            window.open(user.payment_link![type].redirect_url)
-          }}
-          method={method}
-        />
-      </>
+  return (
+    <div className='flex flex-col items-center w-full'>
+      <Progress percent={parseFloat(((payment.processStep / payment.processTotalSteps) * 100).toFixed(2))} />
+      <span className=''>Tu pago se acreditará pronto</span>
+    </div>
+
+  )
+
+    if (
+      user.payment_link &&
+      user.payment_link[type] &&
+      user.payment_link[type].status == 'pending'
     )
+      return (
+        <>
+          <FormPay
+            type={type}
+            loading={loading}
+            createPaymentLink={createPaymentLink}
+            period={period}
+            openModal={() => {
+              window.open(user.payment_link![type].redirect_url)
+            }}
+            method={method}
+          />
+        </>
+      )
 
   // Sí el pago fue completado
   if (

@@ -21,7 +21,7 @@ const Summary = () => {
             <FaTimes className="text-red-500" />
           )}
           <div className="flex flex-col ml-4">
-            <span className="text-[16px] font-bold">Wallet Usdt (Tether - TRON)</span>
+            <span className="text-[16px] font-bold">Wallet Usdt (Tether - POL)</span>
             {hasBitcoinWallet ? (
               <p className="text-green-600">Capturada</p>
             ) : (

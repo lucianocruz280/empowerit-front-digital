@@ -86,7 +86,7 @@ const GenerateQR = ({
             >
               <div className="flex flex-col items-center space-y-4">
                 <img src='/img/insignias/USDT.svg' className='w-[50px] h-[50px]' />
-                <span>Tether USDT (TRON)</span>
+                <span>Tether USDT (POL)</span>
               </div>
             </Button>
           )}
