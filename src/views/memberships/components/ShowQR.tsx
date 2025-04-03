@@ -58,8 +58,9 @@ const ShowQR = ({
           if (!response.ok) return
           const res = await response.json()
 
-          if (res.data?.status) {
-            const status = res.data.status
+          if (res.data?.forwardAddresses[0]?.status) {
+            const status = res.data?.forwardAddresses[0]?.status
+          
             setPayment(res.data)
             await fetch(
               `${import.meta.env.VITE_API_URL}/subscriptions/getStatus/${status}`,
