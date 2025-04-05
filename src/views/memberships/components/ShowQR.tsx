@@ -37,6 +37,7 @@ const ShowQR = ({
       const seconds = user?.payment_link?.[type]?.expires_at?.seconds
       const expiredDate = seconds ? dayjs(seconds * 1000) : null
       console.log(expiredDate && expiredDate >= dayjs())
+      const [loading, setLoading] = useState(false)
       if (
         expiredDate &&
         expiredDate >= dayjs() &&
@@ -60,8 +61,9 @@ const ShowQR = ({
 
           if (res.data?.forwardAddresses[0]?.status) {
             const status = res.data?.forwardAddresses[0]?.status
-          
+            if (loading) return
             setPayment(res.data)
+            setLoading(true)
             await fetch(
               `${import.meta.env.VITE_API_URL}/subscriptions/getStatus/${status}`,
               {
@@ -124,33 +126,33 @@ const ShowQR = ({
     user.payment_link[type].status == 'pending' &&
     payment && payment.processStep > 1
   )
-  return (
-    <div className='flex flex-col items-center w-full'>
-      <Progress percent={parseFloat(((payment.processStep / payment.processTotalSteps) * 100).toFixed(2))} />
-      <span className=''>Tu pago se acreditará pronto</span>
-    </div>
+    return (
+      <div className='flex flex-col items-center w-full'>
+        <Progress percent={parseFloat(((payment.processStep / payment.processTotalSteps) * 100).toFixed(2))} />
+        <span className=''>Tu pago se acreditará pronto</span>
+      </div>
 
-  )
-
-    if (
-      user.payment_link &&
-      user.payment_link[type] &&
-      user.payment_link[type].status == 'pending'
     )
-      return (
-        <>
-          <FormPay
-            type={type}
-            loading={loading}
-            createPaymentLink={createPaymentLink}
-            period={period}
-            openModal={() => {
-              window.open(user.payment_link![type].redirect_url)
-            }}
-            method={method}
-          />
-        </>
-      )
+
+  if (
+    user.payment_link &&
+    user.payment_link[type] &&
+    user.payment_link[type].status == 'pending'
+  )
+    return (
+      <>
+        <FormPay
+          type={type}
+          loading={loading}
+          createPaymentLink={createPaymentLink}
+          period={period}
+          openModal={() => {
+            window.open(user.payment_link![type].redirect_url)
+          }}
+          method={method}
+        />
+      </>
+    )
 
   // Sí el pago fue completado
   if (
