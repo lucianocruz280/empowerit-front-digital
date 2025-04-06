@@ -30,14 +30,14 @@ const ShowQR = ({
   // Se obtiene el usuario
   const user = useAppSelector((state) => state.auth.user)
   const [payment, setPayment] = useState<{ processStep: number, processTotalSteps: number } | null>(null)
+  const [loadingStatus, setLoadingStatus] = useState(false)
   useEffect(() => {
     let intervalId: NodeJS.Timeout
 
     const polling = async () => {
       const seconds = user?.payment_link?.[type]?.expires_at?.seconds
       const expiredDate = seconds ? dayjs(seconds * 1000) : null
-      console.log(expiredDate && expiredDate >= dayjs())
-      const [loading, setLoading] = useState(false)
+ 
       if (
         expiredDate &&
         expiredDate >= dayjs() &&
@@ -61,9 +61,10 @@ const ShowQR = ({
 
           if (res.data?.forwardAddresses[0]?.status) {
             const status = res.data?.forwardAddresses[0]?.status
-            if (loading) return
+            console.log("pasa aqui")
+            if (loadingStatus) return
             setPayment(res.data)
-            setLoading(true)
+            setLoadingStatus(true)
             await fetch(
               `${import.meta.env.VITE_API_URL}/subscriptions/getStatus/${status}`,
               {

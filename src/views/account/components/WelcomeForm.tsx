@@ -240,13 +240,15 @@ const WelcomeForm = ({ data, setOpenWelcomeModal }: any) => {
                 <Field
                   type="text"
                   autoComplete="off"
+                  className="mb-3"
                   name="name"
                   placeholder="Nombre"
                   component={Input}
                   prefix={<HiOutlineUserCircle className="text-xl" />}
                 />
+                <span className=''>Fecha de nacimiento</span>
                 <Field
-                  className="mt-2 ltr:mr-2 rtl:ml-2"
+                  className="mt-0 ltr:mr-2 rtl:ml-2"
                   type="date"
                   autoComplete="off"
                   name="birthdate"
@@ -262,7 +264,7 @@ const WelcomeForm = ({ data, setOpenWelcomeModal }: any) => {
                 {...validatorProps}
               >
                 <div>
-                  <span className="font-bold">Wallet de USDT (Tether - TRON)</span>{' '}
+                  <span className="font-bold">Wallet de USDT (POL)</span>{' '}
                   <span className="text-red-500 text-xs">(Obligatorio)</span>
                 </div>
                 <Field

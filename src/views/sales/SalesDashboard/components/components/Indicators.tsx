@@ -27,6 +27,7 @@ const Indicators = () => {
     const [binaryPoints, setBinaryPoints] = useState(0)
     const [binarySide, setBinarySide] = useState<'left_points' | 'right_points'>('left_points')
     const [isOpenBianry, setIsOpenBinary] = useState(false)
+    const [investmentError, setInvestmentError] = useState("")
     useEffect(() => {
         if (user.uid) {
             const unsub1 = onSnapshot(doc(db, 'users/' + user.uid), (snap) => {
@@ -49,7 +50,6 @@ const Indicators = () => {
             ).then((snap) => {
                 if (!snap.empty) {
                     const payrolls = snap.docs.map((d) => ({ id: d.id, ...d.data() } as any))
-                    console.log(payrolls)
                     const dataDirect = payrolls.reduce((a, b) => a + b.bond_direct, 0)
                     const dataBinary = payrolls.reduce((a, b) => a + b.bond_binary, 0)
                     const dataInvestment = payrolls.reduce((a, b) => a + b?.bond_investment || 0, 0)
@@ -57,13 +57,10 @@ const Indicators = () => {
                     setPayrollBinary(dataBinary || 0)
                     setPayrollInvestment(dataInvestment)
                     setLastPayroll(snap.docs[0].data())
-                    console.log("directo", dataDirect)
                 }
             })
         }
     }, [user.uid])
-
-    console.log("rango", rank)
 
     useEffect(() => {
         const _query = lastPayroll
@@ -84,7 +81,6 @@ const Indicators = () => {
     }, [lastPayroll])
 
     const openDetails = (...types: string[]) => {
-        console.log("payroll", payrollDetails)
         setModalDetails(payrollDetails.filter((r) => types.includes(r.type)).map((d) => ({
             ...d,
             total: d.amount / 0.85,
@@ -114,6 +110,12 @@ const Indicators = () => {
         }
         getBinaryPoints()
     }, [rank?.binary_percent])
+
+    const requestInvestment = () => {
+        if(user.bond_investment < 300) {
+            setInvestmentError("Necesitas tener mas de 300 USD para poder solicitar el retiro")
+        }
+    }
 
     return (
 
@@ -171,8 +173,9 @@ const Indicators = () => {
                             )}
                         </tbody>
                     </table>
-                    <div className="flex justify-end">
-                        <Button disabled={user?.bond_investment == 0}>Solicitar Inversión</Button>
+                    <div className="flex justify-end flex-col items-end">
+                        <Button disabled={user?.bond_investment == 0} onClick={requestInvestment}>Solicitar Inversión</Button>
+                        <span className="text-red-500">{investmentError}</span>
                     </div>
                 </div>
             </Dialog>
@@ -322,7 +325,7 @@ const Indicators = () => {
                                 {loading ? (
                                     <Spinner className={`select-loading-indicatior`} size={40} />
                                 ) : (
-                                    binaryPoints
+                                    binaryPoints?.toFixed(2)
                                 )
                                 }
                             </span>{' '}

@@ -29,7 +29,6 @@ const DialogBinary: FC<Props> = ({ isOpenModal, setIsOpenModal, binary_side }) =
         getSidePoints()
     }, [binary_side])
 
-    console.log("modalD", modalDetails)
     return (
         <Dialog
             isOpen={isOpenModal}
