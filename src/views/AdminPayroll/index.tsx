@@ -80,6 +80,32 @@ const AdminPayroll = () => {
     '9OmNdZnvGNYaQEpFvJ9MSSYQe7G2',
   ]
 
+  const downloadWallet = async () => {
+    try {
+      setLoadingPayment(true)
+      let content = "";
+      for (const wallets of users) {
+        if (!wallets?.wallet_usdt || wallets?.total < 40) return
+        const amount = wallets?.bond_binary + wallets?.bond_direct
+        const wallet = wallets?.wallet_usdt
+        content += `${wallet}, ${amount}\n`;
+        const blob = new Blob([content], { type: "text/plain" });
+
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "wallets.txt";
+        a.click();
+
+        
+        URL.revokeObjectURL(url);
+      }
+      setLoadingPayment(false)
+    } catch (error) {
+      console.error("fallo al descargar las wallets")
+    }
+  }
+
   return (
     <div className="flex flex-col items-end space-y-8">
       <div className="flex space-x-4 items-center">
@@ -87,6 +113,9 @@ const AdminPayroll = () => {
         {/*<Button loading={loadingFee} onClick={getFees}>
           Calcular Fees
         </Button>*/}
+        <Button variant="solid" loading={loadingPayment} onClick={downloadWallet}>
+          DESCARGAR WALLETS PARA PAGAR
+        </Button>
         <Button variant="solid" loading={loadingPayment} onClick={execPayroll}>
           REALIZAR PAGOS
         </Button>
