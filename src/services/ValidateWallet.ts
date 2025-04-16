@@ -22,16 +22,17 @@ export const validateWallet = async (
     const response = await fetch(
       `${
         import.meta.env.VITE_API_URL
-      }/cryptoapis/validateWallet?blockchain=${blockchain}&wallet=` +
-        encodeURIComponent(wallet)
+      }/subscriptions/validate-wallet/${wallet}`
     )
+   
 
     if (!response.ok) {
       throw new Error('Network response was not ok')
     }
 
-    const res: Response = await response.json()
-    return { status: 'success', isValid: res.data.item.isValid }
+    const res: boolean = await response.json()
+    console.log("response", res)
+    return { status: 'success', isValid: res }
   } catch (error) {
     return { status: 'error', error }
   }

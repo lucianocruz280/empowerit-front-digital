@@ -29,7 +29,7 @@ import WalletsHistoryTable from './WalletsHistoryTable'
 const Billing = () => {
   const user = useAppSelector((state) => state.auth.user)
   const [data, setData] = useState({
- 
+
     wallet_litecoin: user.wallet_usdt,
   })
   const [isAuthenticating, setIsAuthenticating] = useState(false)
@@ -115,40 +115,14 @@ const Billing = () => {
     if (wallet.length != 0) {
       validateWallet(wallet, blockchain)
         .then(async (res) => {
-          if (blockchain == 'bitcoin') setIsValidWallet(res.isValid || false)
-          if (blockchain == 'litecoin')
-            setIsValidWalletLitecoin(res.isValid || false)
+          console.log("res", res)
+          if (wallet) setIsValidWallet(res.isValid || false)
 
           if (res.isValid) {
-            if (blockchain == 'bitcoin') {
-              const sendData = {
-                wallet_bitcoin: wallet,
-              }
-              updateUser(user.uid!, sendData)
+            const sendData = {
+              wallet_usdt: wallet,
             }
-
-            if (blockchain == 'xrp') {
-              const sendData = {
-                wallet_ripple: wallet,
-                wallet_ripple_tag: tag,
-              }
-              updateUser(user.uid!, sendData)
-            }
-
-            if (blockchain == 'litecoin') {
-              const sendData = {
-                wallet_litecoin: wallet,
-              }
-              updateUser(user.uid!, sendData)
-              await registerWallet(wallet,'litecoin')
-            }
-
-            if (blockchain == 'xrp') {
-              const sendData = {
-                wallet_litecoin: wallet,
-              }
-              updateUser(user.uid!, sendData)
-            }
+            updateUser(user.uid!, sendData)
           }
 
           toast.push(
@@ -175,7 +149,7 @@ const Billing = () => {
           wallet_litecoin: ''
         });
       }
-      await registerWallet('',"litecoin")
+      await registerWallet('', "litecoin")
     } catch (error) {
       console.log('Error a la hora de borrar la wallet', error)
     } finally {
@@ -213,8 +187,8 @@ const Billing = () => {
           setSubmitting(true)
           try {
             const sendData = {
-             
-            
+
+
               wallet_usdt: values.wallet_litecoin,
             }
             await updateUser(user.uid!, sendData)
@@ -239,7 +213,7 @@ const Billing = () => {
             <Form>
               <FormContainer>
                 <FormDescription title="Wallets" desc="" />
-                
+
                 <FormRow
                   name="wallet_usdt"
                   label="Dirección Wallet Usdt (Tether - TRON)"
@@ -336,7 +310,7 @@ const Billing = () => {
           )
         }}
       </Formik>
-      <WalletsHistoryTable/>
+      <WalletsHistoryTable />
     </>
   )
 }
